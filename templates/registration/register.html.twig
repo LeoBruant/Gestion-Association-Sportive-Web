@@ -7,8 +7,12 @@
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
 
-    <h1>Inscription</h1>
-
+    <h1 class="ml-5">Inscription</h1>
+    <div class="mt-5"> </div>
+    <div class="mb-5 ml-5 "> Vous êtes étudiant et vous n’avez pas encore de compte sur la plateforme ? Remplissez le formulaire ci-dessous afin d’obtenir vos identifiants de connexion.
+        Vous recevrez par la suite un email avec des identifiants temporaires.
+    </div>
+    <div class="ml-5">
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.nom) }}
         {{ form_row(registrationForm.prenom) }}
@@ -19,5 +23,5 @@
 
     <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}
-
+    </div>
 {% endblock %}
