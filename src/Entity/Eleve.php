@@ -18,14 +18,15 @@ class Eleve
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\OneToOne(targetEntity=Categorie::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $Categorie_id;
+    private $categorie;
 
     /**
      * @ORM\Column(type="date")
      */
-    private $date_naissance;
+    private $dateNaissance;
 
     /**
      * @ORM\Column(type="string", length=45)
@@ -35,33 +36,43 @@ class Eleve
     /**
      * @ORM\Column(type="string", length=45)
      */
-    private $prenom;
+	private $prenom;
+	
+	/**
+     * @ORM\Column(type="string", length=45)
+     */
+	private $email;
+	
+	/**
+     * @ORM\Column(type="string", length=45)
+     */
+    private $classe;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCategorieId(): ?int
+    public function getCategorie(): ?int
     {
-        return $this->Categorie_id;
+        return $this->categorie;
     }
 
-    public function setCategorieId(int $Categorie_id): self
+    public function setCategorie(int $categorie): self
     {
-        $this->Categorie_id = $Categorie_id;
+        $this->categorie = $categorie;
 
         return $this;
     }
 
     public function getDateNaissance(): ?\DateTimeInterface
     {
-        return $this->date_naissance;
+        return $this->dateNaissance;
     }
 
-    public function setDateNaissance(\DateTimeInterface $date_naissance): self
+    public function setDateNaissance(\DateTimeInterface $dateNaissance): self
     {
-        $this->date_naissance = $date_naissance;
+        $this->dateNaissance = $dateNaissance;
 
         return $this;
     }
@@ -86,6 +97,30 @@ class Eleve
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
+
+        return $this;
+	}
+	
+	public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+	}
+	
+	public function getClasse(): ?string
+    {
+        return $this->classe;
+    }
+
+    public function setClasse(string $classe): self
+    {
+        $this->classe = $classe;
 
         return $this;
     }

@@ -26,13 +26,13 @@ class Inscription
      * @ORM\OneToOne(targetEntity=Eleve::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $Eleve_id;
+    private $eleve;
 
     /**
      * @ORM\OneToOne(targetEntity=Evenement::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $Evenement_id;
+    private $evenement;
 
     public function getId(): ?int
     {
@@ -51,26 +51,26 @@ class Inscription
         return $this;
     }
 
-    public function getEleveId(): ?Eleve
+    public function getEleve(): ?Eleve
     {
-        return $this->Eleve_id;
+        return $this->eleve;
     }
 
-    public function setEleveId(Eleve $Eleve_id): self
+    public function setEleve(Eleve $eleve): self
     {
-        $this->Eleve_id = $Eleve_id;
+        $this->eleve = $eleve;
 
         return $this;
     }
 
-    public function getEvenementId(): ?Evenement
+    public function getEvenement(): ?Evenement
     {
-        return $this->Evenement_id;
+        return $this->evenement;
     }
 
-    public function setEvenementId(Evenement $Evenement_id): self
+    public function setEvenementId(Evenement $evenement): self
     {
-        $this->Evenement_id = $Evenement_id;
+        $this->evenement = $evenement;
 
         return $this;
     }
