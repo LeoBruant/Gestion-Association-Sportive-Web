@@ -15,14 +15,15 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            provider: app_user_provider
             anonymous: true
             lazy: true
             form_login:
                 login_path: login
                 check_path: login
-            guard:
-                authenticators:
-                    - App\Security\LoginAuthenticator
+            # guard:
+                # authenticators:
+                    # - App\Security\LoginAuthenticator
             logout:
                 path: app_logout
                 # where to redirect after logout
