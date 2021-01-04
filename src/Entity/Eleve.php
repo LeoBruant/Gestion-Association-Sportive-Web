@@ -4,11 +4,14 @@ namespace App\Entity;
 
 use App\Repository\EleveRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface as UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=EleveRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
-class Eleve
+class Eleve implements UserInterface
 {
     /**
      * @ORM\Id
@@ -16,6 +19,11 @@ class Eleve
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $email;
 
     /**
      * @ORM\Column(type="integer")
@@ -37,9 +45,38 @@ class Eleve
      */
     private $prenom;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $classe;
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->id;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getClasse(): ?string
+    {
+        return $this->classe;
+    }
+
+    public function setClasse(string $classe): self
+    {
+        $this->classe = $classe;
+
+        return $this;
     }
 
     public function getCategorieId(): ?int
@@ -54,12 +91,12 @@ class Eleve
         return $this;
     }
 
-    public function getDateNaissance(): ?\DateTimeInterface
+    public function getDateNaissance(): ?\DateTime
     {
         return $this->date_naissance;
     }
 
-    public function setDateNaissance(\DateTimeInterface $date_naissance): self
+    public function setDateNaissance(\DateTime $date_naissance): self
     {
         $this->date_naissance = $date_naissance;
 
@@ -88,5 +125,28 @@ class Eleve
         $this->prenom = $prenom;
 
         return $this;
+    }
+    public function eraseCredentials()
+    {
+
+    }
+
+    public function getSalt()
+    {
+
+    }
+
+    public function getUsername()
+    {
+
+    }
+
+    public function getRoles()
+    {
+
+    }
+    public function getPassword()
+    {
+
     }
 }
