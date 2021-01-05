@@ -3,11 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Eleve;
-use Cassandra\Date;
+use App\Entity\Utilisateur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -27,7 +28,6 @@ class RegistrationFormType extends AbstractType
                 'format' => 'yyyy-MM-dd',])
             ->add('classe')
             ->add('email')
-
         ;
     }
 
@@ -35,6 +35,7 @@ class RegistrationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Eleve::class,
+
         ]);
     }
 }
