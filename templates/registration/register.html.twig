@@ -14,23 +14,23 @@
     </div>
 
     <div class="ml-5">
+        {{ form_start(registrationForm) }}
 
+            <div class="mb-3"><p class="my-0">Ton nom</p>{{ form_widget(registrationForm.nom, {'attr':{'class':"col-6"}}) }}</div>
 
-            <div class="mb-3"><p class="my-0">Ton nom</p>{{ form_widget(registrationForm.nom, {'attr':{'class':"col-4"}}) }}</div>
+            <div class="mb-3"><p class="my-0">Ton prénom</p>{{ form_widget(registrationForm.prenom, {'attr':{'class':"col-6"}}) }}</div>
 
-            <div class="mb-3"><p class="my-0">Ton prénom</p>{{ form_widget(registrationForm.prenom, {'attr':{'class':"col-4"}}) }}</div>
+            <div class="mb-3"><p class="my-0">Ta date de naissance</p>{{ form_widget(registrationForm.date_naissance, {'attr':{'class':"col-6"}}) }}</div>
 
-            <div class="mb-3"><p class="my-0">Ta date de naissance</p>{{ form_widget(registrationForm.date_naissance, {'attr':{'class':"col-4"}}) }}</div>
+            <div class="mb-3"><p class="my-0">Ta classe</p>{{ form_widget(registrationForm.classe, {'attr':{'class':"col-6"}}) }}</div>
 
-            <div class="mb-3"><p class="my-0">Ta classe</p>{{ form_widget(registrationForm.classe, {'attr':{'class':"col-4"}}) }}</div>
-
-            <div class="mb-3"><p class="my-0">Ton adresse mail</p>{{ form_widget(registrationForm.email, {'attr':{'class':"col-4"}}) }}</div>
+            <div class="mb-3"><p class="my-0">Ton adresse mail</p>{{ form_widget(registrationForm.email, {'attr':{'class':"col-6"}}) }}</div>
 
 
             <button type="submit" class="btn btn-success float-left md-5 mr-4">Valider </button>
             <div class="d-flex align-items-center">
             <p class="my-1"> Vous avez déja un compte? <a href={{ path('app_login') }}> Conneceter vous!</a> </p>
             </div>
-
+        {{ form_end(registrationForm) }}
     </div>
 {% endblock %}
