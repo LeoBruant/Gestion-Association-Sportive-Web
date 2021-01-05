@@ -5,78 +5,52 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
-            <style>
-                @import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
-
-                .container-fluid {
-                    overflow: hidden;
-                    margin-top: 250px;
-                    background: #000000;
-                    color: #989c9e !important;
-                    margin-bottom: 0;
-                    padding-bottom: 0;
-                }
-
-                small {
-                    font-size: calc(12px + (15 - 12) * ((100vw - 360px) / (1600 - 360))) !important
-                }
-
-                .bold-text {
-                    color: white !important
-                }
-
-                h3 {
-                    font-size: calc(34px + (40 - 34) * ((100vw - 360px) / (1600 - 360))) !important
-                }
-            </style>
-        {% endblock %}
-
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+		<link rel="stylesheet" href="css/base.css"/>
+		{% block stylesheets %}{% endblock %}
     </head>
     <body>
         {% block navigation %}
             <nav class="navbar navbar-expand-lg navbar-dark mb-5 menu" style="background-color: #1E2A47;">
-                    <ul class="navbar-nav mr-auto">
-                        <span class="navbar-brand">Logo</span>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">ACCUEIL <span class="sr-only">(current)</span></a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ml-auto">
+				<ul class="navbar-nav mr-auto">
+					<span class="navbar-brand">Logo</span>
+					<li class="nav-item active">
+						<a class="nav-link" href="#">ACCUEIL <span class="sr-only">(current)</span></a>
+					</li>
+				</ul>
+				<ul class="navbar-nav ml-auto">
 
-                        <li class="nav-item">
-                            <a class="nav-link" href={{ path('app_login') }}>
-                                <i class="fas fa-user-circle"></i>
-                                MON PROFIL
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                    </ul>
+					<li class="nav-item">
+						<a class="nav-link" href={{ path('app_login') }}>
+							<i class="fas fa-user-circle"></i>
+							MON PROFIL
+							<span class="sr-only">(current)</span>
+						</a>
+					</li>
+				</ul>
             </nav>
-
         {% endblock %}
         {% block body %}{% endblock %}
         {% block footer %}
-            <div class="container-fluid pb-0 mb-0 justify-content-center">
-                <footer>
+            <div class="container-fluid justify-content-center">
+                <footer class="mt-5">
                     <div class="row justify-content-center py-5">
                         <div class="col-11">
                             <div class="row ">
                                 <div class="col-xl-3 col-md-4 col-sm-4 col-12">
-                                    <h6 class="mb-3 mb-lg-4 bold-text "><b>Association Sportive Saint-Vincent</b></h6>
+                                    <h6 class="mb-3 mb-lg-4 bold-text"><b>Association Sportive Saint-Vincent</b></h6>
                                     <ul class="list-unstyled">
                                         <li>30 rue de Meaux,</li>
                                         <li>60300 Senlis</li>
                                     </ul>
-                                    <h6 class="mb-lg-4 bold-text "><b>Association Saint-Vincent</b></h6>
+                                    <h6 class="bold-text"><b>Association Saint-Vincent</b></h6>
                                     <ul class="list-unstyled">
                                         <li>https://www.lycee-stvincent.fr/</li>
                                     </ul>
                                 </div>
                                 <div class="col-xl-3 col-md-4 col-sm-4 col-12">
-                                    <h6 class="mb-3 mb-lg-4 bold-text "><b>Nous Contacter</b></h6>
+                                    <h6 class="mb-3 mb-lg-4 bold-text"><b>Nous Contacter</b></h6>
                                     <ul class="list-unstyled">
                                         <li>Tél: 03 66 66 66 66</li>
                                         <li>Fax: 03 66 66 66 66</li>
@@ -85,7 +59,7 @@
                                     </ul>
                                 </div>
                                 <div class="col-xl-3 col-md-4 col-sm-4 col-12">
-                                    <h6 class="mb-3 mb-lg-4 bold-text "><b>Acces Rapide</b></h6>
+                                    <h6 class="mb-3 mb-lg-4 bold-text"><b>Acces Rapide</b></h6>
                                     <ul class="list-unstyled">
                                         <li>>Accueil</li>
                                         <li>>Actualités</li>
@@ -94,7 +68,7 @@
                                     </ul>
                                 </div>
                                 <div class="col-xl-3 col-md-4 col-sm-4 col-12">
-                                    <h6 class="mb-3 mb-lg-4 bold-text "><b>Suivez-Nous</b></h6>
+                                    <h6 class="mb-3 mb-lg-4 bold-text"><b>Suivez-Nous</b></h6>
                                     <div>
                                         <i class="fab fa-twitter-square fa-2x mr-1"></i>
                                         <i class="fab fa-facebook-square fa-2x ml-1"></i>

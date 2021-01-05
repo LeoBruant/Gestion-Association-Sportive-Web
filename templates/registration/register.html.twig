@@ -8,7 +8,7 @@
     {% endfor %}
 
     <h1 class="ml-5">Inscription</h1>
-    <div class="mt-5"> </div>
+    <div class="mt-5"></div>
     <div class="mb-5 ml-5 "> Vous êtes étudiant et vous n’avez pas encore de compte sur la plateforme ? Remplissez le formulaire ci-dessous afin d’obtenir vos identifiants de connexion.
         Vous recevrez par la suite un email avec des identifiants temporaires.
     </div>
@@ -29,7 +29,7 @@
 
             <button type="submit" class="btn btn-success float-left md-5 mr-4">Valider </button>
             <div class="d-flex align-items-center">
-            <p class="my-1"> Vous avez déjà un compte? <a href={{ path('app_login') }}> Connectez-vous.</a> </p>
+            <p class="my-1"> Vous avez déjà un compte? <a href={{ path('app_login') }} class="text-dark"> Connectez-vous.</a> </p>
             </div>
         {{ form_end(registrationForm) }}
     </div>
