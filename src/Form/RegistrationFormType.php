@@ -35,7 +35,7 @@ class RegistrationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Eleve::class,
-            'data_class' => Utilisateur::class,
+
         ]);
     }
 }
