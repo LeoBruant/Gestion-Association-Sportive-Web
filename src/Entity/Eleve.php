@@ -21,11 +21,6 @@ class Eleve implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $email;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $Categorie_id;
@@ -55,17 +50,6 @@ class Eleve implements UserInterface
         return $this->id;
     }
 
-    public function getEmail(): ?string
-    {
-        return $this->id;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
 
     public function getClasse(): ?string
     {
