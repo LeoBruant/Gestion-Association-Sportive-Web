@@ -28,7 +28,7 @@ class Eleve implements UserInterface
     /**
      * @ORM\Column(type="integer")
      */
-    private $Categorie_id;
+    private $Categorie_id = 1;
 
     /**
      * @ORM\Column(type="date")
