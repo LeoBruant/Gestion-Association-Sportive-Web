@@ -3,12 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Eleve;
-use App\Entity\Utilisateur;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -21,13 +19,11 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('prenom')
-            ->add('date_naissance',DateType::class,['widget' => 'single_text',
-                // this is actually the default format for single_text
-                'format' => 'yyyy-MM-dd',])
-            ->add('classe')
-            ->add('email')
+            ->add('nom', TextType::class)
+            ->add('prenom', TextType::class)
+            ->add('date_naissance', DateType::class, ['widget' => 'single_text', 'format' => 'yyyy-MM-dd',])
+            ->add('classe', TextType::class)
+            ->add('email', EmailType::class)
         ;
     }
 
@@ -35,7 +31,6 @@ class RegistrationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Eleve::class,
-
         ]);
     }
 }

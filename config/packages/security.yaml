@@ -6,7 +6,6 @@ security:
             algorithm: auto
         App\Entity\Utilisateur:
             algorithm: auto
-
     providers:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
@@ -24,13 +23,13 @@ security:
             form_login:
                 login_path: login
                 check_path: login
-            # guard:
-                # authenticators:
-                    # - App\Security\LoginAuthenticator
+            #guard:
+                #authenticators:
+                    #- App\Security\LoginAuthenticator
             logout:
                 path: app_logout
                 # where to redirect after logout
-                target: register
+                target: app_register
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

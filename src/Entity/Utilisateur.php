@@ -36,7 +36,7 @@ class Utilisateur implements UserInterface
 	
 	/**
      * @ORM\OneToOne(targetEntity=Eleve::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $eleve;
 
