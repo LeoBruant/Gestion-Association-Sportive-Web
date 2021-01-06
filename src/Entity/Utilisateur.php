@@ -11,6 +11,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class Utilisateur implements UserInterface
 {
+    const ROLE_ADMIN = "ROLE_ADMIN";
+    const ROLE_UTILISATEUR = "ROLE_UTILISATEUR";
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

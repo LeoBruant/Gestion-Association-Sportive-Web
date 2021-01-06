@@ -20,11 +20,11 @@ class EleveFixtures extends Fixture
 
             $eleve
                 ->setEmail('eleve-'.$i.'@gmail.com')
-                ->setDateNaissance(new \DateTime(''.rand(1,30).'/'.rand(1,12).'/'.rand(1995,2021)))
+                ->setDateNaissance(new \DateTime(''.rand(1995,2021).'/'.rand(1,12).'/'.rand(1,30)))
                 ->setNom('nom-'.$i)
                 ->setPrenom('prenom'.$i)
                 ->setClasse('classe'.rand(1,5))
-                ->setCategorieId('categorie'.rand(1,3));
+                ->setCategorieId(rand(1,3));
 
             $manager->persist($eleve);
         }
