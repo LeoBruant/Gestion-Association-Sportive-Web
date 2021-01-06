@@ -15,3 +15,8 @@ footer{
 .bold-text {
 	color: white;
 }
+
+.lien, .lien:hover{
+	color: #989c9e;
+	text-decoration: none;
+}

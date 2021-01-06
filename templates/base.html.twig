@@ -15,7 +15,7 @@
 				<ul class="navbar-nav mr-auto">
 					<span class="navbar-brand">Logo</span>
 					<li class="nav-item active">
-						<a class="nav-link" href="#">ACCUEIL <span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="{{ path('app_login') }}">ACCUEIL <span class="sr-only">(current)</span></a>
 					</li>
 				</ul>
 				<ul class="navbar-nav ml-auto">
@@ -45,7 +45,7 @@
                                     </ul>
                                     <h6 class="bold-text"><b>Association Saint-Vincent</b></h6>
                                     <ul class="list-unstyled">
-                                        <li>https://www.lycee-stvincent.fr/</li>
+                                        <li><a href="https://www.lycee-stvincent.fr/" class="lien">https://www.lycee-stvincent.fr/</a></li>
                                     </ul>
                                 </div>
                                 <div class="col-xl-3 col-md-4 col-sm-4 col-12">
@@ -53,24 +53,24 @@
                                     <ul class="list-unstyled">
                                         <li>Tél: 03 66 66 66 66</li>
                                         <li>Fax: 03 66 66 66 66</li>
-                                        <li>Email: contact@lyceestvincent.fr</li>
-                                        <li>Web: https://asso-sport.lycestvincent.fr</li>
+                                        <li>Email: <a href="contact@lyceestvincent.fr" class="lien">contact@lyceestvincent.fr</a></li>
+                                        <li>Web: <a href="https://asso-sport.lycestvincent.fr" class="lien">https://asso-sport.lycestvincent.fr</a></li>
                                     </ul>
                                 </div>
                                 <div class="col-xl-3 col-md-4 col-sm-4 col-12">
                                     <h6 class="mb-3 mb-lg-4 bold-text"><b>Acces Rapide</b></h6>
                                     <ul class="list-unstyled">
-                                        <li>>Accueil</li>
-                                        <li>>Actualités</li>
-                                        <li>>Événements</li>
-                                        <li>>Contact</li>
+                                        <li><a href="{{ path('app_login') }}" class="lien">>Accueil</a></li>
+                                        <li><a href="#" class="lien">>Actualités</a></li>
+                                        <li><a href="#" class="lien">>Événements</a></li>
+                                        <li><a href="#" class="lien">>Contact</a></li>
                                     </ul>
                                 </div>
                                 <div class="col-xl-3 col-md-4 col-sm-4 col-12">
                                     <h6 class="mb-3 mb-lg-4 bold-text"><b>Suivez-Nous</b></h6>
                                     <div>
-                                        <i class="fab fa-twitter-square fa-2x mr-1"></i>
-                                        <i class="fab fa-facebook-square fa-2x ml-1"></i>
+                                        <a href="" class="lien" target="_blank"><i class="fab fa-twitter-square fa-2x mr-1"></i></a>
+                                        <a href="https://www.facebook.com/pages/Lyc%C3%A9e%20St%20Vincent/119093664776002/" class="lien" target="_blank"><i class="fab fa-facebook-square fa-2x ml-1"></i></a>
                                     </div>
                                 </div>
                             </div>
