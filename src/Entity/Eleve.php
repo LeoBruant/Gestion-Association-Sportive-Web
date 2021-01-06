@@ -28,7 +28,7 @@ class Eleve implements UserInterface
     /**
      * @ORM\Column(type="integer")
      */
-    private $Categorie_id = 1;
+    private $CategorieId = 1;
 
     /**
      * @ORM\Column(type="date")
@@ -81,12 +81,12 @@ class Eleve implements UserInterface
 
     public function getCategorieId(): ?int
     {
-        return $this->Categorie_id;
+        return $this->CategorieId;
     }
 
-    public function setCategorieId(int $Categorie_id): self
+    public function setCategorieId(int $CategorieId): self
     {
-        $this->Categorie_id = $Categorie_id;
+        $this->CategorieId = $CategorieId;
 
         return $this;
     }
