@@ -35,17 +35,17 @@ class Document
     /**
      * @ORM\Column(type="datetime")
      */
-    private $date_ajout;
+    private $dateAjout;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $Document_Categorie_id;
+    private $documentCategorieId;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $evenement_id;
+    private $evenementId;
 
     public function getId(): ?int
     {
@@ -90,36 +90,36 @@ class Document
 
     public function getDateAjout(): ?\DateTimeInterface
     {
-        return $this->date_ajout;
+        return $this->dateAjout;
     }
 
-    public function setDateAjout(\DateTimeInterface $date_ajout): self
+    public function setDateAjout(\DateTimeInterface $dateAjout): self
     {
-        $this->date_ajout = $date_ajout;
+        $this->dateAjout = $dateAjout;
 
         return $this;
     }
 
     public function getDocumentCategorieId(): ?int
     {
-        return $this->Document_Categorie_id;
+        return $this->documentCategorieId;
     }
 
-    public function setDocumentCategorieId(int $Document_Categorie_id): self
+    public function setDocumentCategorieId(int $documentCategorieId): self
     {
-        $this->Document_Categorie_id = $Document_Categorie_id;
+        $this->documentCategorieId = $documentCategorieId;
 
         return $this;
     }
 
     public function getEvenementId(): ?int
     {
-        return $this->evenement_id;
+        return $this->evenementId;
     }
 
-    public function setEvenementId(int $evenement_id): self
+    public function setEvenementId(int $evenementId): self
     {
-        $this->evenement_id = $evenement_id;
+        $this->evenementId = $evenementId;
 
         return $this;
     }
