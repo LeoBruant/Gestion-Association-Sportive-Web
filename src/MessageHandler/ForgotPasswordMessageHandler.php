@@ -9,6 +9,6 @@ final class ForgotPasswordMessageHandler implements MessageHandlerInterface
 {
     public function __invoke(ForgotPasswordMessage $message)
     {
-        // do something with your message
+		
     }
 }
