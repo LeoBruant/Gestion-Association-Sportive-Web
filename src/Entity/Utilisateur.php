@@ -27,7 +27,7 @@ class Utilisateur implements UserInterface
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
-	private $password;
+	private $motDePasse;
 	
 	/**
      * @ORM\Column(type="integer", length=180, nullable=true)
@@ -81,22 +81,22 @@ class Utilisateur implements UserInterface
      */
     public function getPassword(): string
     {
-        return (string) $this->password;
+        return (string) $this->motDePasse;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(string $motDePasse): self
     {
-        $this->password = $password;
+        $this->motDePasse = $motDePasse;
 
         return $this;
 	}
 	
-	public function getEleve(): ?int
+	public function getEleveId(): ?int
 	{
 		return $this->eleveId;
 	}
 
-    public function setEleve(?int $eleveId): self
+    public function setEleveId(?int $eleveId): self
     {
         $this->eleve = $eleveId;
 

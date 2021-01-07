@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\EleveRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface as UserInterface;
@@ -33,7 +34,7 @@ class Eleve implements UserInterface
     /**
      * @ORM\Column(type="date")
      */
-    private $date_naissance;
+    private $dateNaissance;
 
     /**
      * @ORM\Column(type="string", length=45)
@@ -48,7 +49,22 @@ class Eleve implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $classe;
+	private $classeId;
+	
+	/**
+     * @ORM\Column(type="string", length=255)
+     */
+	private $genre;
+
+	/**
+     * @ORM\Column(type="datetime", length=255)
+     */
+	private $dateCreation;
+
+	/**
+     * @ORM\Column(type="boolean")
+     */
+	private $archivee;
 
     public function getId(): ?int
     {
@@ -67,14 +83,14 @@ class Eleve implements UserInterface
         return $this;
     }
 
-    public function getClasse(): ?string
+    public function getClasseId(): ?string
     {
-        return $this->classe;
+        return $this->classeId;
     }
 
-    public function setClasse(string $classe): self
+    public function setClasseId(string $classeId): self
     {
-        $this->classe = $classe;
+        $this->classeId = $classeId;
 
         return $this;
     }
@@ -93,12 +109,12 @@ class Eleve implements UserInterface
 
     public function getDateNaissance(): ?\DateTime
     {
-        return $this->date_naissance;
+        return $this->dateNaissance;
     }
 
-    public function setDateNaissance(\DateTime $date_naissance): self
+    public function setDateNaissance(\DateTime $dateNaissance): self
     {
-        $this->date_naissance = $date_naissance;
+        $this->dateNaissance = $dateNaissance;
 
         return $this;
     }
@@ -125,7 +141,44 @@ class Eleve implements UserInterface
         $this->prenom = $prenom;
 
         return $this;
+	}
+
+	public function getGenre(): ?string
+    {
+        return $this->genre;
     }
+
+    public function setGenre(string $genre): self
+    {
+        $this->genre = $genre;
+
+        return $this;
+	}
+
+	public function getDateCreation(): ?DateTime
+    {
+        return $this->dateCreation;
+    }
+
+    public function setDateCreation(DateTime $dateCreation): self
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
+	}
+
+	public function getArchivee(): ?bool
+    {
+        return $this->archivee;
+    }
+
+    public function setArchivee(bool $archivee): self
+    {
+        $this->archivee = $archivee;
+
+        return $this;
+	}
+	
     public function eraseCredentials()
     {
 
