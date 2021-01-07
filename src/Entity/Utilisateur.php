@@ -11,9 +11,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class Utilisateur implements UserInterface
 {
-    const ROLE_ADMIN = "ROLE_ADMIN";
-    const ROLE_UTILISATEUR = "ROLE_UTILISATEUR";
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -27,21 +24,15 @@ class Utilisateur implements UserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="json")
-     */
-    private $roles = [];
-
-    /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
 	private $password;
 	
 	/**
-     * @ORM\OneToOne(targetEntity=Eleve::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\Column(type="integer", length=180, nullable=true)
      */
-    private $eleve;
+    private $eleveId;
 
     public function getId(): ?int
     {
@@ -75,11 +66,7 @@ class Utilisateur implements UserInterface
      */
     public function getRoles(): array
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
+        return [];
     }
 
     public function setRoles(array $roles): self
@@ -105,13 +92,13 @@ class Utilisateur implements UserInterface
 	}
 	
 	public function getEleve(): ?int
-    {
-        return $this->eleve;
-    }
+	{
+		return $this->eleveId;
+	}
 
-    public function setEleve(int $eleve): self
+    public function setEleve(?int $eleveId): self
     {
-        $this->eleve = $eleve;
+        $this->eleve = $eleveId;
 
         return $this;
 	}

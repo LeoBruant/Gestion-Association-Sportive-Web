@@ -23,13 +23,14 @@ security:
             form_login:
                 login_path: app_login
                 check_path: app_login
-            #guard:
-                #authenticators:
-                    #- App\Security\LoginAuthenticator
+                #default_target_path: app_register
+                username_parameter: "login_form[_email]"
+            guard:
+                authenticators:
+                    - App\Security\LoginAuthenticator
             logout:
                 path: app_logout
                 # where to redirect after logout
-                target: app_register
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
