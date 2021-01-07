@@ -23,7 +23,6 @@ security:
             form_login:
                 login_path: app_login
                 check_path: app_login
-                #default_target_path: app_register
                 username_parameter: "login_form[_email]"
             guard:
                 authenticators:

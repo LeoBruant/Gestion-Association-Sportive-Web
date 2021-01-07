@@ -62,7 +62,7 @@ class Eleve implements UserInterface
 	private $dateCreation;
 
 	/**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default" : 0})
      */
 	private $archivee;
 
