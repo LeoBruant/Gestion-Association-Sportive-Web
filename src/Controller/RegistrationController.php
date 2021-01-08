@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Entity\Eleve;
 use App\Entity\Utilisateur;
 use App\Form\RegistrationFormType;
@@ -22,20 +23,57 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $student);
 		$form->handleRequest($request);
 
+		$user = new Utilisateur();
+
         if ($form->isSubmitted() && $form->isValid()){
 
+			// Catégories
+
+			$categories = [
+				'labels' => [
+					'Junior homme',
+					'Junior femme',
+				],
+
+				'values' => [],
+			];
+
+			for ($i = 0; $i < (count($categories['labels'])); $i++){
+				
+				$category = new Categorie();
+
+				$category
+					->setLibelle($categories['labels'][$i]);
+
+				$categories['values'][] = $category;
+			}
+
+			// Elève
+
+			if($student->GetGenre() == 'Homme'){
+				$category = $categories['values'][0];
+			}
+
+			else{
+				$category = $categories['values'][1];
+			}
+
 			$student
-				->setCategorieId(rand(1,4))
+				->setCategorie($category)
 				->setDateCreation(new \DateTime())
 				->setArchivee(0);
 
-			$user = new Utilisateur();
+			// Utilisateur
+			
 			$user
 				->setEmail($student->GetEmail())
-				->setPassword($this->encoder->encodePassword($user, 'azerty'));
+				->setPassword('azerty');
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($student);
+			$entityManager = $this->getDoctrine()->getManager();
+			
+			$entityManager->persist($student);
+			$entityManager->persist($user);
+
 			$entityManager->flush();
 
             return $this->redirectToRoute('app_login');

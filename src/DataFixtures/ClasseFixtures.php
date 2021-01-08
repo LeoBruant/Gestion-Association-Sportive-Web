@@ -2,40 +2,44 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Categorie;
+use App\Entity\Classe;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Monolog\Handler\Curl\Util;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Validator\Constraints\Length;
 
-class CategorieFixtures extends Fixture
+class ClasseFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-		// Catégories
+		// Classes
 
-		$categories = [
+		$levels = [
 			'labels' => [
-				'Cadet',
-				'Cadette',
-				'Junior homme',
-				'Junior femme',
+				'Seconde',
+				'Première',
+				'Terminale',
+				'BTS-1',
+				'BTS-2',
+				'Licence',
+				'Master 1',
+				'Master 2',
 			],
 
 			'values' => [],
 		];
 
-		for ($i = 0; $i < (count($categories['labels'])); $i++){
+		for ($i = 0; $i < (count($levels['labels'])); $i++){
 			
-			$category = new Categorie();
+			$level = new Classe();
 
-			$category
-				->setLibelle($categories['labels'][$i]);
+			$level
+				->setNom($levels['labels'][$i]);
 
-			$categories['values'][] = $category;
+			$levels['values'][] = $level;
 
-			$manager->persist($category);
+			$manager->persist($level);
 		}
 
 		$manager->flush();

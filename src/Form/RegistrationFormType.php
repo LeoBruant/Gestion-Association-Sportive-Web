@@ -23,7 +23,7 @@ class RegistrationFormType extends AbstractType
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
             ->add('dateNaissance', DateType::class, ['widget' => 'single_text', 'format' => 'yyyy-MM-dd',])
-            ->add('classeId', ChoiceType::class, [
+            ->add('classe', ChoiceType::class, [
 				'choices' => [
 					'Seconde' => 0,
 					'Première' => 1,

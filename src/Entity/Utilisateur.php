@@ -30,9 +30,9 @@ class Utilisateur implements UserInterface
 	private $motDePasse;
 	
 	/**
-     * @ORM\Column(type="integer", length=180, nullable=true)
+     * @ORM\OneToOne(targetEntity=Eleve::class, cascade={"persist", "remove"})
      */
-    private $eleveId;
+    private $eleve;
 
     public function getId(): ?int
     {
@@ -91,14 +91,14 @@ class Utilisateur implements UserInterface
         return $this;
 	}
 	
-	public function getEleveId(): ?int
+	public function getEleve(): ?Eleve
 	{
-		return $this->eleveId;
+		return $this->eleve;
 	}
 
-    public function setEleveId(?int $eleveId): self
+    public function setEleve(?Eleve $eleve): self
     {
-        $this->eleve = $eleveId;
+        $this->eleve = $eleve;
 
         return $this;
 	}

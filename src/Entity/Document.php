@@ -38,14 +38,15 @@ class Document
     private $dateAjout;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\OneToOne(targetEntity=DocumentCategorie::class, cascade={"persist", "remove"})
+	 * @ORM\JoinColumn(nullable=false)
      */
-    private $documentCategorieId;
+    private $documentCategorie;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=Evenement::class, inversedBy="documents")
      */
-    private $evenementId;
+    private $evenement;
 
     public function getId(): ?int
     {
@@ -100,26 +101,26 @@ class Document
         return $this;
     }
 
-    public function getDocumentCategorieId(): ?int
+    public function getDocumentCategorie(): ?DocumentCategorie
     {
-        return $this->documentCategorieId;
+        return $this->documentCategorie;
     }
 
-    public function setDocumentCategorieId(int $documentCategorieId): self
+    public function setDocumentCategorie(DocumentCategorie $documentCategorie): self
     {
-        $this->documentCategorieId = $documentCategorieId;
+        $this->documentCategorie = $documentCategorie;
 
         return $this;
     }
 
-    public function getEvenementId(): ?int
+    public function getEvenement(): ?Evenement
     {
-        return $this->evenementId;
+        return $this->evenement;
     }
 
-    public function setEvenementId(int $evenementId): self
+    public function setEvenement(?Evenement $evenement): self
     {
-        $this->evenementId = $evenementId;
+        $this->evenement = $evenement;
 
         return $this;
     }

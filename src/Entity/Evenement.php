@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EvenementRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,7 +37,7 @@ class Evenement
     /**
      * @ORM\Column(type="integer")
      */
-    private $nombre_places;
+    private $nombrePlaces;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -51,19 +53,29 @@ class Evenement
      * @ORM\OneToOne(targetEntity=Sport::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $Sport_id;
+    private $sport;
 
     /**
      * @ORM\OneToOne(targetEntity=Type::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $Type_id;
+    private $type;
 
     /**
      * @ORM\OneToOne(targetEntity=Categorie::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $Categorie_id;
+    private $categorie;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Document::class, mappedBy="evenement")
+     */
+    private $documents;
+
+    public function __construct()
+    {
+        $this->documents = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -111,9 +123,9 @@ class Evenement
         return $this->nombre_places;
     }
 
-    public function setNombrePlaces(int $nombre_places): self
+    public function setNombrePlaces(int $nombrePlaces): self
     {
-        $this->nombre_places = $nombre_places;
+        $this->nombrePlaces = $nombrePlaces;
 
         return $this;
     }
@@ -142,38 +154,68 @@ class Evenement
         return $this;
     }
 
-    public function getSportId(): ?Sport
+    public function getSport(): ?Sport
     {
-        return $this->Sport_id;
+        return $this->sport;
     }
 
-    public function setSportId(Sport $Sport_id): self
+    public function setSport(Sport $sport): self
     {
-        $this->Sport_id = $Sport_id;
+        $this->sport = $sport;
 
         return $this;
     }
 
-    public function getTypeId(): ?Type
+    public function getType(): ?Type
     {
-        return $this->Type_id;
+        return $this->type;
     }
 
-    public function setTypeId(Type $Type_id): self
+    public function setType(Type $type): self
     {
-        $this->Type_id = $Type_id;
+        $this->type = $type;
 
         return $this;
     }
 
-    public function getCategorieId(): ?Categorie
+    public function getCategorie(): ?Categorie
     {
-        return $this->Categorie_id;
+        return $this->categorie;
     }
 
-    public function setCategorieId(Categorie $Categorie_id): self
+    public function setCategorie(Categorie $categorie): self
     {
-        $this->Categorie_id = $Categorie_id;
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Document[]
+     */
+    public function getDocuments(): Collection
+    {
+        return $this->documents;
+    }
+
+    public function addDocument(Document $document): self
+    {
+        if (!$this->documents->contains($document)) {
+            $this->documents[] = $document;
+            $document->setEvenement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDocument(Document $document): self
+    {
+        if ($this->documents->removeElement($document)) {
+            // set the owning side to null (unless already changed)
+            if ($document->getEvenement() === $this) {
+                $document->setEvenement(null);
+            }
+        }
 
         return $this;
     }
