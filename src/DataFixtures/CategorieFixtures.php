@@ -13,29 +13,22 @@ class CategorieFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-		// Catégories
-
 		$categories = [
-			'labels' => [
-				'Cadet',
-				'Cadette',
-				'Junior homme',
-				'Junior femme',
-			],
-
-			'values' => [],
+			'Cadet',
+			'Cadette',
+			'Junior homme',
+			'Junior femme',
 		];
 
-		for ($i = 0; $i < (count($categories['labels'])); $i++){
+		for ($i = 0; $i < (count($categories)); $i++){
 			
 			$category = new Categorie();
 
 			$category
-				->setLibelle($categories['labels'][$i]);
-
-			$categories['values'][] = $category;
+				->setLibelle($categories[$i]);
 
 			$manager->persist($category);
+			$this->addReference('category '.$i, $category);
 		}
 
 		$manager->flush();

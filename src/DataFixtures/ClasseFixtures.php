@@ -13,33 +13,26 @@ class ClasseFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-		// Classes
-
 		$levels = [
-			'labels' => [
-				'Seconde',
-				'Première',
-				'Terminale',
-				'BTS-1',
-				'BTS-2',
-				'Licence',
-				'Master 1',
-				'Master 2',
-			],
-
-			'values' => [],
+			'Seconde',
+			'Première',
+			'Terminale',
+			'BTS-1',
+			'BTS-2',
+			'Licence',
+			'Master 1',
+			'Master 2',
 		];
 
-		for ($i = 0; $i < (count($levels['labels'])); $i++){
+		for ($i = 0; $i < (count($levels)); $i++){
 			
 			$level = new Classe();
 
 			$level
-				->setNom($levels['labels'][$i]);
-
-			$levels['values'][] = $level;
+				->setNom($levels[$i]);
 
 			$manager->persist($level);
+			$this->addReference('level '.$i, $level);
 		}
 
 		$manager->flush();
