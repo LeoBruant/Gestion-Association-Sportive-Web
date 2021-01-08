@@ -20,7 +20,7 @@
 					</li>
 				</ul>
 				<ul class="navbar-nav ml-auto">
-					{% if app.request.attributes.get('_route') != 'home' %}
+				{% if app.user %}
 					<li class="nav-item">
 						<a class="nav-link" href={{ path('app_login') }}>
 							<i class="fas fa-user-circle"></i>
@@ -28,14 +28,14 @@
 							<span class="sr-only">(current)</span>
 						</a>
 					</li>
-					{% endif %}
-
-					{% if app.request.attributes.get('_route') == 'home' %}
+				{% endif %}
+				
+				{% if not app.user and app.request.attributes.get('_route') != 'app_login' %}
 					<li class="nav-item">
 						<a href={{ path('app_login') }} class="text-light">Se connecter</a>
 						<span class="sr-only">(current)</span>
 					</li>
-					{% endif %}
+				{% endif %}
 				</ul>
             </nav>
         {% endblock %}
