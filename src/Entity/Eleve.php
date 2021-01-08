@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface as UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=EleveRepository::class)
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="Il existe déjà un compte avec cet adresse email")
  */
 class Eleve implements UserInterface
 {

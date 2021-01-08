@@ -11,15 +11,27 @@
 		{% block stylesheets %}{% endblock %}
     </head>
     <body>
+
+		<!-- header -->
+
         {% block navigation %}
             <nav class="navbar navbar-expand-lg navbar-dark mb-5 menu" style="background-color: #1E2A47;">
+
+				<!-- partie gauche du header -->
+
 				<ul class="navbar-nav mr-auto">
 					<span class="navbar-brand"><img src="https://www.lycee-stvincent.fr/themes/saint_vincent/images/logo.png" class="col-9"/></span>
 					<li class="nav-item active">
 						<a class="nav-link" href="{{ path('home') }}">ACCUEIL <span class="sr-only">(current)</span></a>
 					</li>
 				</ul>
+
+				<!-- partie gauche du header -->
+
 				<ul class="navbar-nav ml-auto">
+
+				<!-- si nous sommes connectés -->
+
 				{% if app.user %}
 					<li class="nav-item">
 						<a class="nav-link" href={{ path('app_login') }}>
@@ -29,6 +41,8 @@
 						</a>
 					</li>
 				{% endif %}
+
+				<!-- si nous sommes connectés et non sur la page de connexion -->
 				
 				{% if not app.user and app.request.attributes.get('_route') != 'app_login' %}
 					<li class="nav-item">
@@ -39,7 +53,13 @@
 				</ul>
             </nav>
         {% endblock %}
+
+		<!-- body -->
+
         {% block body %}{% endblock %}
+
+		<!-- footer -->
+
         {% block footer %}
             <div class="container-fluid justify-content-center">
                 <footer class="mt-5">
@@ -88,6 +108,9 @@
                 </footer>
             </div>
         {% endblock %}
+
+		<!-- scripts -->
+
         {% block javascripts %}{% endblock %}
     </body>
 </html>
