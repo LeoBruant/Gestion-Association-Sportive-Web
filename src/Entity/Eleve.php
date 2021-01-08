@@ -27,12 +27,6 @@ class Eleve implements UserInterface
     private $email;
 
     /**
-     * @ORM\OneToOne(targetEntity=Categorie::class, cascade={"persist", "remove"})
-	 * @ORM\JoinColumn(nullable=false)
-     */
-    private $categorie;
-
-    /**
      * @ORM\Column(type="date")
      */
     private $dateNaissance;
@@ -46,12 +40,6 @@ class Eleve implements UserInterface
      * @ORM\Column(type="string", length=45)
      */
     private $prenom;
-
-    /**
-     * @ORM\OneToOne(targetEntity=Classe::class, cascade={"persist", "remove"})
-	 * @ORM\JoinColumn(nullable=false)
-     */
-	private $classe;
 	
 	/**
      * @ORM\Column(type="string", length=255)
@@ -68,6 +56,18 @@ class Eleve implements UserInterface
      */
 	private $archivee;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="eleves")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categorie;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="eleves")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $classe;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -81,30 +81,6 @@ class Eleve implements UserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
-
-        return $this;
-    }
-
-    public function getClasse(): ?Classe
-    {
-        return $this->classe;
-    }
-
-    public function setClasse(Classe $classe): self
-    {
-        $this->classe = $classe;
-
-        return $this;
-    }
-
-    public function getCategorie(): ?Categorie
-    {
-        return $this->categorie;
-    }
-
-    public function setCategorie(Categorie $categorie): self
-    {
-        $this->categorie = $categorie;
 
         return $this;
     }
@@ -146,9 +122,9 @@ class Eleve implements UserInterface
 	}
 
 	public function getGenre(): ?string
-             {
-                 return $this->genre;
-             }
+                               {
+                                   return $this->genre;
+                               }
 
     public function setGenre(string $genre): self
     {
@@ -158,9 +134,9 @@ class Eleve implements UserInterface
 	}
 
 	public function getDateCreation(): ?DateTime
-             {
-                 return $this->dateCreation;
-             }
+                               {
+                                   return $this->dateCreation;
+                               }
 
     public function setDateCreation(DateTime $dateCreation): self
     {
@@ -170,9 +146,9 @@ class Eleve implements UserInterface
 	}
 
 	public function getArchivee(): ?bool
-             {
-                 return $this->archivee;
-             }
+                               {
+                                   return $this->archivee;
+                               }
 
     public function setArchivee(bool $archivee): self
     {
@@ -213,6 +189,30 @@ class Eleve implements UserInterface
     public function setTest(Categorie $test): self
     {
         $this->test = $test;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getClasse(): ?Classe
+    {
+        return $this->classe;
+    }
+
+    public function setClasse(?Classe $classe): self
+    {
+        $this->classe = $classe;
 
         return $this;
     }
