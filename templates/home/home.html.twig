@@ -3,7 +3,13 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-<main class="col-md-10 mx-auto py-5 my-5 text-center">
-    <h1>Accueil</h1>
-</main>
+    {% if app.user %}
+        <section class="col-md-10 mx-auto py-5 my-5 text-center">
+            <h1>Bonjour {{ app.user.username }}</h1>
+        </section>
+    {% else %}
+        <main class="col-md-10 mx-auto py-5 my-5 text-center">
+            <h1>Accueil</h1>
+        </main>
+    {% endif %}
 {% endblock %}
