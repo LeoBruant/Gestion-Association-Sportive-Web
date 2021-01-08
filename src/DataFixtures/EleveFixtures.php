@@ -48,8 +48,6 @@ class EleveFixtures extends Fixture implements DependentFixtureInterface
 
 			$manager->persist($student);
 			$this->addReference('student '.$i, $student);
-
-			dump($student);
 		}
 
 		$manager->flush();

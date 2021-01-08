@@ -35,16 +35,14 @@ class UtilisateurFixtures extends Fixture implements DependentFixtureInterface
 			
 			$isStudent = rand(0,1);
 
-			$studentId = NULL;
-
-			$student = $this->getReference('student '.rand(0,9));
+			$student = NULL;
 
 			if($isStudent == 1){
-				$studentId = $student->GetId();
+				$student = $this->getReference('student '.rand(0,9));
 			}
 
 			$utilisateur
-				->setEleve($studentId)
+				->setEleve($student)
                 ->setEmail('user-'.$i.'@gmail.com')
 				->setPassword($this->encoder->encodePassword($utilisateur, $password));
 
