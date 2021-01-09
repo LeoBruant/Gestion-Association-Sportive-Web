@@ -43,7 +43,7 @@ class UtilisateurFixtures extends Fixture implements DependentFixtureInterface
 
 			$utilisateur
 				->setEleve($student)
-                ->setEmail('user-'.$i.'@gmail.com')
+                ->setEmail('user-'.($i+1).'@gmail.com')
 				->setPassword($this->encoder->encodePassword($utilisateur, $password));
 
 			$manager->persist($utilisateur);
