@@ -67,10 +67,12 @@ class RegistrationController extends AbstractController
 
             $user = new Utilisateur();
 
+            $plainPassword = $student->getPrenom()[0].$student->getNom();
+
             $user
                 ->setEleve($student)
                 ->setEmail($student->GetEmail())
-                ->setPassword('azerty');
+                ->setPassword($passwordEncoder->encodePassword($user, $plainPassword));
 
             $entityManager->persist($user);
             $entityManager->flush();
