@@ -14,10 +14,10 @@ class CategorieFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
 		$categories = [
-			'Cadet',
-			'Cadette',
 			'Junior homme',
+			'Cadet',
 			'Junior femme',
+			'Cadette',
 		];
 
 		for ($i = 0; $i < (count($categories)); $i++){

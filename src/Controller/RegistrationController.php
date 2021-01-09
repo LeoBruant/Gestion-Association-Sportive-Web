@@ -51,7 +51,9 @@ class RegistrationController extends AbstractController
 
             if ($student->GetGenre() == 'Homme') {
                 $category = $categories['values'][0];
-            } else {
+            } 
+            
+            else {
                 $category = $categories['values'][1];
             }
 
