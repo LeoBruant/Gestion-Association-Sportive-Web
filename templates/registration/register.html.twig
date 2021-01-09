@@ -3,27 +3,29 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    {% for flashError in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
+    {{ form_start(registrationForm) }}
+        {% for flashError in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+        {% endfor %}
 
-    <main class="col-md-10 mx-auto mb-5">
-		<h1 class="mb-4">Inscription</h1>
-		<p class="mb-5 text-justify"> Vous êtes étudiant et vous n’avez pas encore de compte sur la plateforme ? Remplissez le formulaire ci-dessous afin d’obtenir vos identifiants de connexion. Vous recevrez par la suite un email avec des identifiants temporaires.</p>
+        <main class="col-md-10 mx-auto mb-5">
+            <h1 class="mb-4">Inscription</h1>
+            <p class="mb-5 text-justify"> Vous êtes étudiant et vous n’avez pas encore de compte sur la plateforme ? Remplissez le formulaire ci-dessous afin d’obtenir vos identifiants de connexion. Vous recevrez par la suite un email avec des identifiants temporaires.</p>
 
-		<!-- formulaire -->
+            <!-- formulaire -->
 
-		<div class="mb-3"><p class="my-0">Nom de famille</p>{{ form_widget(registrationForm.nom, {'attr':{'class':"col-6"}}) }}</div>
-		<div class="mb-3"><p class="my-0">Prénom</p>{{ form_widget(registrationForm.prenom, {'attr':{'class':"col-6"}}) }}</div>
-		<div class="mb-3"><p class="my-0">Date de naissance</p>{{ form_widget(registrationForm.dateNaissance, {'attr':{'class':"col-6"}}) }}</div>
-		<div class="mb-3"><p class="my-0">Classe</p>{{ form_widget(registrationForm.classe, {'attr':{'class':"col-6"}}) }}</div>
-		<div class="mb-3"><p class="my-0">Adresse mail</p>{{ form_widget(registrationForm.email, {'attr':{'class':"col-6"}}) }}</div>
-		<div class="mb-3"><p class="my-0">Genre</p>{{ form_widget(registrationForm.genre, {'attr':{'class':"col-6"}}) }}</div>
+            <div class="mb-3"><p class="my-0">Nom de famille</p>{{ form_widget(registrationForm.nom, {'attr':{'class':"col-6"}}) }}</div>
+            <div class="mb-3"><p class="my-0">Prénom</p>{{ form_widget(registrationForm.prenom, {'attr':{'class':"col-6"}}) }}</div>
+            <div class="mb-3"><p class="my-0">Date de naissance</p>{{ form_widget(registrationForm.dateNaissance, {'attr':{'class':"col-6"}}) }}</div>
+            <div class="mb-3"><p class="my-0">Classe</p>{{ form_widget(registrationForm.classe, {'attr':{'class':"col-6"}}) }}</div>
+            <div class="mb-3"><p class="my-0">Adresse mail</p>{{ form_widget(registrationForm.email, {'attr':{'class':"col-6"}}) }}</div>
+            <div class="mb-3"><p class="my-0">Genre</p>{{ form_widget(registrationForm.genre, {'attr':{'class':"col-6"}}) }}</div>
 
-		<button type="submit" class="btn btn-success float-left md-5 mr-4 px-5">Valider</button>
+            <button type="submit" class="btn btn-success float-left md-5 mr-4 px-5">Valider</button>
 
-		<div class="d-flex align-items-center">
-			<p class="my-1"> Vous avez déjà un compte? <a href={{ path('app_login') }} class="text-dark"> Connectez-vous.</a></p>
-		</div>
+            <div class="d-flex align-items-center">
+                <p class="my-1"> Vous avez déjà un compte? <a href={{ path('app_login') }} class="text-dark"> Connectez-vous.</a></p>
+            </div>
+        {{ form_end(registrationForm) }}
     </main>
 {% endblock %}

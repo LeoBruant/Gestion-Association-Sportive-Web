@@ -6,77 +6,81 @@ use App\Entity\Categorie;
 use App\Entity\Eleve;
 use App\Entity\Utilisateur;
 use App\Form\RegistrationFormType;
+use App\Security\LoginAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 class RegistrationController extends AbstractController
 {
     /**
      * @Route("/inscription", name="app_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginAuthenticator $authenticator): Response
     {
         $student = new Eleve();
         $form = $this->createForm(RegistrationFormType::class, $student);
-		$form->handleRequest($request);
+        $form->handleRequest($request);
 
-		$user = new Utilisateur();
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Catégories
 
-        if ($form->isSubmitted() && $form->isValid()){
+            $categories = [
+                'labels' => [
+                    'Junior homme',
+                    'Junior femme',
+                ],
 
-			// Catégories
+                'values' => [],
+            ];
 
-			$categories = [
-				'labels' => [
-					'Junior homme',
-					'Junior femme',
-				],
+            for ($i = 0; $i < (count($categories['labels'])); $i++) {
 
-				'values' => [],
-			];
+                $category = new Categorie();
 
-			for ($i = 0; $i < (count($categories['labels'])); $i++){
-				
-				$category = new Categorie();
+                $category
+                    ->setLibelle($categories['labels'][$i]);
 
-				$category
-					->setLibelle($categories['labels'][$i]);
+                $categories['values'][] = $category;
+            }
 
-				$categories['values'][] = $category;
-			}
+            // Elève
 
-			// Elève
+            if ($student->GetGenre() == 'Homme') {
+                $category = $categories['values'][0];
+            } else {
+                $category = $categories['values'][1];
+            }
 
-			if($student->GetGenre() == 'Homme'){
-				$category = $categories['values'][0];
-			}
+            $student
+                ->setCategorie($category)
+                ->setDateCreation(new \DateTime())
+                ->setArchivee(0);
 
-			else{
-				$category = $categories['values'][1];
-			}
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($student);
 
-			$student
-				->setCategorie($category)
-				->setDateCreation(new \DateTime())
-				->setArchivee(0);
+            // Utilisateur
 
-			// Utilisateur
-			
-			$user
-				->setEmail($student->GetEmail())
-				->setPassword('azerty');
+            $user = new Utilisateur();
 
-			$entityManager = $this->getDoctrine()->getManager();
-			
-			$entityManager->persist($student);
-			$entityManager->persist($user);
+            $user
+                ->setEleve($student)
+                ->setEmail($student->GetEmail())
+                ->setPassword('azerty');
 
-			$entityManager->flush();
+            $entityManager->persist($user);
+            $entityManager->flush();
 
-            return $this->redirectToRoute('app_login');
+            return $guardHandler->authenticateUserAndHandleSuccess(
+                $student,
+                $request,
+                $authenticator,
+                'main' // firewall name in security.yaml
+            );
         }
 
         return $this->render('registration/register.html.twig', [

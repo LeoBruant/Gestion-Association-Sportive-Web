@@ -22,19 +22,17 @@ class ClasseRepository extends ServiceEntityRepository
     // /**
     //  * @return Classe[] Returns an array of Classe objects
     //  */
-    /*
-    public function findByExampleField($value)
+    /*public function findAll()
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT nom 
+            FROM App\Entity\Classe nom'
+        );
+
+        return $query->getResult();
+    }*/
 
     /*
     public function findOneBySomeField($value): ?Classe

@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use App\Repository\UtilisateurRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
+ * @UniqueEntity(fields={"email"}, message="Il existe déjà un compte avec cet adresse email")
  */
 class Utilisateur implements UserInterface
 {
@@ -92,9 +94,9 @@ class Utilisateur implements UserInterface
 	}
 	
 	public function getEleve(): ?Eleve
-	{
-		return $this->eleve;
-	}
+    {
+        return $this->eleve;
+    }
 
     public function setEleve(?Eleve $eleve): self
     {
