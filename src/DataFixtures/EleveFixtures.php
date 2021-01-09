@@ -36,7 +36,7 @@ class EleveFixtures extends Fixture implements DependentFixtureInterface
 			$level = $this->getReference('level '.rand(0,7));
 
 			$student
-				->setEmail('eleve-'.$i.'@gmail.com')
+				->setEmail('eleve-'.($i+1).'@gmail.com')
 				->setCategorie($category)
                 ->setDateNaissance(new \DateTime(''.rand(1995,2021).'/'.rand(1,12).'/'.rand(1,30)))
                 ->setNom('nom-'.($i+1))
