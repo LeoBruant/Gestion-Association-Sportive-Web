@@ -1,8 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/index.html.twig' %}
 
-{% block title %}Créer un évènement{% endblock %}
-
-{% block body %}
+{% block tab %}
 	<section class="col-10 mx-auto my-5">
 		<h1 class="mb-5">Ajouter un évènement</h1>
 		<h3 class="mb-4">Informations générales</h3>
@@ -24,7 +22,7 @@
 				
 			</div>
 		</div>
-		<div class="row mt-2">
+		<div class="row mt-5">
 			<div class="col-md-5 text-center">
 				<button type="submit" class="btn btn-success col-3">Ajouter</button>
 			</div>

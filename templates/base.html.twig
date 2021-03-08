@@ -22,12 +22,12 @@
 				<ul class="navbar-nav mr-auto float-left">
 					<span class="navbar-brand"><img src="https://www.lycee-stvincent.fr/themes/saint_vincent/images/logo.png" class="col-9"/></span>
 					<li class="nav-item active">
-						<a class="nav-link" href="{{ path('home') }}">ACCUEIL <span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="{{ path('home') }}">ACCUEIL</a>
 					</li>
 					
 					{% if app.user %}
 						<li class="nav-item active">
-							<a class="nav-link" href="{{ path('event') }}">EVENEMENT <span class="sr-only">(current)</span></a>
+							<a class="nav-link" href="{{ path('event') }}">ADMINISTRATION</a>
 						</li>
 					{% endif %}
 				</ul>
