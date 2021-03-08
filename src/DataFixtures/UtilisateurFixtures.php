@@ -38,7 +38,7 @@ class UtilisateurFixtures extends Fixture implements DependentFixtureInterface
 			$student = NULL;
 
 			if($isStudent == 1){
-				$student = $this->getReference('student '.rand(0,9));
+				$student = $this->getReference('student '.$i);
 			}
 
 			$utilisateur
