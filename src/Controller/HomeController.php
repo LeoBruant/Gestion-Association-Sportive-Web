@@ -16,4 +16,12 @@ class HomeController extends AbstractController
     {
         return $this->render('home/home.html.twig');
     }
+
+	/**
+     * @Route("/event", name="event")
+     */
+    public function event(AuthenticationUtils $authenticationUtils): Response
+    {
+        return $this->render('evenement/create.html.twig');
+    }
 }
