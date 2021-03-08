@@ -50,27 +50,27 @@ class Evenement
     private $vignette;
 
     /**
-     * @ORM\OneToOne(targetEntity=Sport::class, cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Document::class, mappedBy="evenement")
+     */
+    private $documents;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Sport::class, inversedBy="evenements")
      * @ORM\JoinColumn(nullable=false)
      */
     private $sport;
 
     /**
-     * @ORM\OneToOne(targetEntity=Type::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Type::class, inversedBy="evenements")
      * @ORM\JoinColumn(nullable=false)
      */
     private $type;
 
     /**
-     * @ORM\OneToOne(targetEntity=Categorie::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="evenements")
      * @ORM\JoinColumn(nullable=false)
      */
     private $categorie;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Document::class, mappedBy="evenement")
-     */
-    private $documents;
 
     public function __construct()
     {
@@ -159,37 +159,6 @@ class Evenement
         return $this->sport;
     }
 
-    public function setSport(Sport $sport): self
-    {
-        $this->sport = $sport;
-
-        return $this;
-    }
-
-    public function getType(): ?Type
-    {
-        return $this->type;
-    }
-
-    public function setType(Type $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    public function getCategorie(): ?Categorie
-    {
-        return $this->categorie;
-    }
-
-    public function setCategorie(Categorie $categorie): self
-    {
-        $this->categorie = $categorie;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Document[]
      */
@@ -216,6 +185,37 @@ class Evenement
                 $document->setEvenement(null);
             }
         }
+
+        return $this;
+    }
+
+    public function setSport(?Sport $sport): self
+    {
+        $this->sport = $sport;
+
+        return $this;
+    }
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use Amp\Http\Client\Request;
+use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Evenement;
 use App\Form\CreateEventType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,11 +14,12 @@ class EventController extends AbstractController
 	/**
      * @Route("/event", name="event")
      */
-    public function new(): Response
+    public function new(Request $request): Response
     {
         $event = new Evenement();
 
         $form = $this->createForm(CreateEventType::class, $event);
+		$form->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
 			$entityManager = $this->getDoctrine()->getManager();
