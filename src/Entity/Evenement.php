@@ -120,7 +120,7 @@ class Evenement
 
     public function getNombrePlaces(): ?int
     {
-        return $this->nombre_places;
+        return $this->nombrePlaces;
     }
 
     public function setNombrePlaces(int $nombrePlaces): self
