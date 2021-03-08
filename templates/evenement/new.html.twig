@@ -3,7 +3,29 @@
 {% block title %}Créer un évènement{% endblock %}
 
 {% block body %}
-	<section class="col-md-10 mx-auto py-5 my-5 text-center">
-		{{ form(form) }}
+	<section class="w-75 mx-auto py-5 my-5">
+		{{ form_start(form) }}
+		<div class="row">
+			<div class="col-md-5 col-12 mb-0 ">
+				<p class="my-1">Nom de l'événement</p>{{ form_widget(form.nom) }}
+				<p class="my-1">Date de début</p>{{ form_widget(form.date) }}
+				<p class="my-1">Nombre_places</p>{{ form_widget(form.nombre_places) }}
+				<p class="my-1">image</p>{{ form_widget(form.image) }}
+				<p class="my-1">Vignette</p>{{ form_widget(form.vignette) }}
+				<p class="my-1">Sport</p>{{ form_widget(form.sport) }}
+				<p class="my-1">Type</p>{{ form_widget(form.type) }}
+				<p class="my-1">Categorie</p>{{ form_widget(form.categorie) }}
+			</div>
+			<div class="col-md-7 col-12" class="mb-0">
+				<p class="my-0 t">Description</p>{{ form_widget(form.description) }}
+			</div>
+		</div>
+		<div class="row mt-2">
+			<div class="col-1">
+				<button type="submit" class="btn btn-success md-5 mr-4 px-5 mb-2">Valider</button>
+			</div>
+		</div>
+
+		{{ form_end(form) }}
 	</section>
 {% endblock %}
