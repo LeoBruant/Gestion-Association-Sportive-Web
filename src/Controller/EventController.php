@@ -20,6 +20,12 @@ class EventController extends AbstractController
 
         $form = $this->createForm(CreateEventType::class, $event);
 
+		if ($form->isSubmitted() && $form->isValid()) {
+			$entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($event);
+            $entityManager->flush();
+        }
+
 		return $this->render('evenement/new.html.twig', [
             'form' => $form->createView(),
         ]);

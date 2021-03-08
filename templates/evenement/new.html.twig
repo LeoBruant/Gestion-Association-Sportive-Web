@@ -3,21 +3,23 @@
 {% block title %}Créer un évènement{% endblock %}
 
 {% block body %}
-	<section class="w-75 mx-auto py-5 my-5">
+	<section class="col-10 mx-auto my-5">
+		<h1 class="mb-5">Ajouter un évènement</h1>
+		<h3 class="mb-4">Informations générales</h3>
 		{{ form_start(form) }}
 		<div class="row">
-			<div class="col-md-5 col-12 mb-0 ">
-				<p class="my-1">Nom de l'événement</p>{{ form_widget(form.nom) }}
-				<p class="my-1">Date de début</p>{{ form_widget(form.date) }}
-				<p class="my-1">Nombre_places</p>{{ form_widget(form.nombre_places) }}
-				<p class="my-1">image</p>{{ form_widget(form.image) }}
-				<p class="my-1">Vignette</p>{{ form_widget(form.vignette) }}
-				<p class="my-1">Sport</p>{{ form_widget(form.sport) }}
-				<p class="my-1">Type</p>{{ form_widget(form.type) }}
-				<p class="my-1">Categorie</p>{{ form_widget(form.categorie) }}
+			<div class="col-md-5 col-12 mb-0">
+				<p class="mt-3 mb-1">Nom de l'événement<span class="text-danger">*</span></p>{{ form_widget(form.nom) }}
+				<p class="mt-3 mb-1">Nombre de places<span class="text-danger">*</span></p>{{ form_widget(form.nombre_places) }}
+				<p class="mt-3 mb-1">Date<span class="text-danger">*</span></p>{{ form_widget(form.date) }}
+				<p class="mt-3 mb-1">Categorie<span class="text-danger">*</span></p>{{ form_widget(form.categorie) }}
+				<p class="mt-3 mb-1">Sport associé<span class="text-danger">*</span></p>{{ form_widget(form.sport) }}
+				<p class="mt-3 mb-1">Type<span class="text-danger">*</span></p>{{ form_widget(form.type) }}
+				<p class="mt-3 mb-1">Vignette<span class="text-danger">*</span></p>{{ form_widget(form.vignette) }}
+				<p class="mt-3 mb-1">Image<span class="text-danger">*</span></p>{{ form_widget(form.image) }}
 			</div>
 			<div class="col-md-7 col-12" class="mb-0">
-				<p class="my-0 t">Description</p>{{ form_widget(form.description) }}
+				<p class="mt-3 mb-1">Description<span class="text-danger">*</span></p>{{ form_widget(form.description, {'attr':{'rows': '10'}}) }}
 			</div>
 		</div>
 		<div class="row mt-2">
@@ -28,4 +30,9 @@
 
 		{{ form_end(form) }}
 	</section>
+	<style>
+		textarea {
+			resize: none;
+		}
+	</style>
 {% endblock %}
