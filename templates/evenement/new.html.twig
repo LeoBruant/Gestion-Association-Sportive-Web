@@ -4,31 +4,32 @@
 	<section class="col-10 mx-auto my-5">
 		<h1 class="mb-5">Ajouter un évènement</h1>
 		<h3 class="mb-4">Informations générales</h3>
-		{{ form_start(form) }}
+		{{ form_start(event_form) }}
 		<div class="row">
 			<div class="col-md-5 mb-0">
-				<p class="mt-3 mb-1">Nom de l'événement<span class="text-danger">*</span></p>{{ form_widget(form.nom) }}
-				<p class="mt-3 mb-1">Nombre de places<span class="text-danger">*</span></p>{{ form_widget(form.nombre_places) }}
-				<p class="mt-3 mb-1">Date<span class="text-danger">*</span></p>{{ form_widget(form.date) }}
-				<p class="mt-3 mb-1">Categorie<span class="text-danger">*</span></p>{{ form_widget(form.categorie) }}
-				<p class="mt-3 mb-1">Sport associé<span class="text-danger">*</span></p>{{ form_widget(form.sport) }}
-				<p class="mt-3 mb-1">Type<span class="text-danger">*</span></p>{{ form_widget(form.type) }}
-				<p class="mt-3 mb-1">Vignette<span class="text-danger">*</span></p>{{ form_widget(form.vignette) }}
-				<p class="mt-3 mb-1">Image<span class="text-danger">*</span></p>{{ form_widget(form.image) }}
+				<p class="mt-3 mb-1">Nom de l'événement<span class="text-danger">*</span></p>{{ form_widget(event_form.nom) }}
+				<p class="mt-3 mb-1">Nombre de places<span class="text-danger">*</span></p>{{ form_widget(event_form.nombre_places) }}
+				<p class="mt-3 mb-1">Date<span class="text-danger">*</span></p>{{ form_widget(event_form.date) }}
+				<p class="mt-3 mb-1">Categorie<span class="text-danger">*</span></p>{{ form_widget(event_form.categorie) }}
+				<p class="mt-3 mb-1">Sport associé<span class="text-danger">*</span></p>{{ form_widget(event_form.sport) }}
+				<p class="mt-3 mb-1">Type<span class="text-danger">*</span></p>{{ form_widget(event_form.type) }}
+				<p class="mt-3 mb-1">Vignette<span class="text-danger">*</span></p>{{ form_widget(event_form.vignette) }}
+				<p class="mt-3 mb-1">Image<span class="text-danger">*</span></p>{{ form_widget(event_form.image) }}
 			</div>
 			<div class="col-md-7" class="mb-0">
-				<p class="mt-3 mb-1">Description<span class="text-danger">*</span></p>{{ form_widget(form.description, {'attr':{'rows': '7'}})}}
+				<p class="mt-3 mb-1">Description<span class="text-danger">*</span></p>{{ form_widget(event_form.description, {'attr':{'rows': '7'}})}}
 				<h3 class="mb-4 mt-5">Documents associés</h3>
-				
+				<div class="col-md-5 text-center">
+				</div>
 			</div>
 		</div>
 		<div class="row mt-5">
 			<div class="col-md-5 text-center">
-				<button type="submit" class="btn btn-success col-3">Ajouter</button>
+				{{ form_widget(event_form.valider, {'attr': {'class': 'bg-success text-light col-3'}}) }}
 			</div>
 		</div>
 
-		{{ form_end(form) }}
+		{{ form_end(event_form) }}
 	</section>
 	<style>
 		textarea {
