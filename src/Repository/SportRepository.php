@@ -22,19 +22,20 @@ class SportRepository extends ServiceEntityRepository
     // /**
     //  * @return Sport[] Returns an array of Sport objects
     //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function getSports(): array
     {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT *
+            FROM App\Entity\Sport'
+        );
+
+        // returns an array of Product objects
+        return $query->getResult();
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Sport

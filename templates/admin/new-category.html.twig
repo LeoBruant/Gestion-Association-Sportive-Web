@@ -1,0 +1,17 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block tab %}
+	<section class="col-10 mx-auto my-5">
+		<h1 class="mb-5 text-center">Ajouter une categorie d'événement</h1>
+		{{ form_start(category_form) }}
+
+		<div class="col-md-5 mx-auto mb-5">
+			<p class="mt-3 mb-1">Libelle de la catégorie<span class="text-danger">*</span></p>{{ form_widget(category_form.libelle) }}
+		</div>
+		<div class="text-center">
+			{{ form_widget(category_form.valider, {'attr': {'class': 'bg-success text-light col-2'}}) }}
+		</div>
+
+		{{ form_end(category_form) }}
+	</section>
+{% endblock %}
