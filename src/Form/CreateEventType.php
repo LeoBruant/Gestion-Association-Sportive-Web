@@ -21,23 +21,40 @@ class CreateEventType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom', TextType::class)
-            ->add('description', TextareaType::class)
-            ->add('date', DateType::class, ['widget' => 'single_text', 'format' => 'yyyy-MM-dd'])
-            ->add('nombre_places', TextType::class)
-            ->add('image', FileType::class)
-            ->add('vignette', FileType::class)
+            ->add('nom', TextType::class, [
+                'required' => true,
+            ])
+            ->add('description', TextareaType::class,[
+                'required' => true,
+            ])
+            ->add('date', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+                'required' => true,
+            ])
+            ->add('nombre_places', TextType::class,[
+                'required' => true,
+                ])
+            ->add('image', FileType::class,[
+                'required' => true,
+            ])
+            ->add('vignette', FileType::class,[
+                'required' => true,
+            ])
             ->add('sport', EntityType::class, [
 			    'class' => Sport::class,
                 'choice_label' => 'nom',
+                'required' => true,
 			])
             ->add('type', EntityType::class, [
-			'class' => Type::class,
-            'choice_label' => 'nom',
+			    'class' => Type::class,
+                'choice_label' => 'nom',
+                'required' => true,
 			])
             ->add('categorie', EntityType::class, [
 			    'class' => Categorie::class,
                 'choice_label' => 'libelle',
+                'required' => true,
 			])
 			->add('valider', SubmitType::class)
         ;
