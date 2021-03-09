@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Utilisateur;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,6 +15,15 @@ class HomeController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        return $this->render('home/home.html.twig');
+		$admin = false;
+		$user = $this->getDoctrine()->getRepository(Utilisateur::class)->find($this->getUser()->getId());
+
+		if($user->getEleve() === null){
+			$admin = true;
+		}
+
+        return $this->render('home/home.html.twig', [
+			'admin' => $admin,
+		]);
     }
 }
