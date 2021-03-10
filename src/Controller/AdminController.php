@@ -145,12 +145,60 @@ class AdminController extends AbstractController
     }
 
     /**
+<<<<<<< HEAD
+     * @Route("/admin/delete-event/{id}",name="delete-event")
+     *
+=======
      * @Route("/admin/delete-event", name="delete-event")
+>>>>>>> 95b2f9807e4072d6ee0594a642665b2f2893d801
      */
     public function removeEvent(Evenement $event){
         $manager = $this->getDoctrine()->getManager();
         $manager->remove($event);
         $manager->flush();
+
+        return $this->render('admin/delete-event.html.twig', [
+            'event'=> $event,
+        ]);
+    }
+    /**
+     * @Route("/admin/delete-categorie/{id}",name="delete-categorie")
+     *
+     */
+    public function removeCategorie(Categorie $categorie){
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($categorie);
+        $manager->flush();
+
+        return $this->render('admin/delete-categorie.html.twig', [
+            'event'=> $categorie,
+        ]);
+    }
+    /**
+     * @Route("/admin/delete-sport/{id}",name="delete-sport")
+     *
+     */
+    public function removeSport(Sport $sport){
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($sport);
+        $manager->flush();
+
+        return $this->render('admin/delete-sport.html.twig', [
+            'event'=> $sport,
+        ]);
+    }
+    /**
+     * @Route("/admin/delete-type/{id}",name="delete-type")
+     *
+     */
+    public function removeType(Type $type){
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($type);
+        $manager->flush();
+
+        return $this->render('admin/delete-type.html.twig', [
+            'event'=> $type,
+        ]);
     }
 
 }
