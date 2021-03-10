@@ -36,13 +36,13 @@ class CreateEventType extends AbstractType
             ->add('nombre_places', IntegerType::class,[
                 'required' => true,
                 ])
-            ->add('image', FileType::class,[
+            ->add('image', FileType::class, array('data_class' => null),[
                 'required' => true,
             ])
-            ->add('vignette', FileType::class,[
+            ->add('vignette', FileType::class, array('data_class' => null),[
                 'required' => true,
             ])
-            ->add('sport', EntityType::class, [
+            ->add('sport', EntityType::class,  [
 			    'class' => Sport::class,
                 'choice_label' => 'nom',
                 'required' => true,

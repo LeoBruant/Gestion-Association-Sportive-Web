@@ -22,7 +22,7 @@
 							<tr>
 								<th scope="row">{{ sport.id }}</th>
 								<td>{{ sport.nom }}</td>
-								<td><a href="#" class="btn btn-info float-right">Modifier</a></td>
+								<td><a href="{{ path('modif-sport', {'id': sport.id}) }}" class="btn btn-info float-right">Modifier</a></td>
 								<td><a href="{{ path('delete-sport', {'id': sport.id}) }}" class="btn btn-danger float-right">Supprimer</a></td>
 							</tr>
 						{% endfor %}

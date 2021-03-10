@@ -1,0 +1,16 @@
+{% extends 'admin/index.html.twig' %}
+{% block body %}
+    {# sport form #}
+
+    <div class="col-lg-6 mb-5">
+        <h2 class="mb-5 text-center">Ajouter un sport</h2>
+        {{ form_start(sport_form) }}
+        <div class="col-md-7 mx-auto mb-5">
+            <p class="mt-3 mb-1">Nom du sport<span class="text-danger">*</span></p>{{ form_widget(sport_form.nom) }}
+        </div>
+        <div class="text-center">
+            {{ form_widget(sport_form.valider, {'attr': {'class': 'bg-success text-light col-2'}}) }}
+        </div>
+        {{ form_end(sport_form) }}
+    </div>
+{% endblock %}

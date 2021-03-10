@@ -137,12 +137,8 @@ class AdminController extends AbstractController
     }
 
     /**
-<<<<<<< HEAD
      * @Route("/admin/delete-event/{id}",name="delete-event")
      *
-=======
-     * @Route("/admin/delete-event", name="delete-event")
->>>>>>> 95b2f9807e4072d6ee0594a642665b2f2893d801
      */
     public function removeEvent(Evenement $event){
         $manager = $this->getDoctrine()->getManager();
@@ -163,7 +159,7 @@ class AdminController extends AbstractController
         $manager->flush();
 
         return $this->render('admin/delete-categorie.html.twig', [
-            'event'=> $categorie,
+            'categorie'=> $categorie,
         ]);
     }
     /**
@@ -176,7 +172,7 @@ class AdminController extends AbstractController
         $manager->flush();
 
         return $this->render('admin/delete-sport.html.twig', [
-            'event'=> $sport,
+            'sport'=> $sport,
         ]);
     }
     /**
@@ -189,7 +185,80 @@ class AdminController extends AbstractController
         $manager->flush();
 
         return $this->render('admin/delete-type.html.twig', [
-            'event'=> $type,
+            'type'=> $type,
+        ]);
+    }
+    /**
+     * @Route("/admin/modif-event/{id}",name="modif-event")
+     *
+     */
+    public function modifEvent(Request $request, Evenement $event){
+        $form = $this->createForm(CreateEventType::class, $event);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($event);
+            $entityManager->flush();
+        }
+        return $this->render('admin/modif-event.html.twig', [
+            'event_form' => $form->createView(),
+            'event'=> $event,
+        ]);
+    }
+    /**
+         * @Route("/admin/modif-sport/{id}",name="modif-sport")
+         *
+         */
+        public function modifSport(Request $request, Sport $sport)
+        {
+            $form = $this->createForm(CreateSportType::class, $sport);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($sport);
+                $entityManager->flush();
+            }
+            return $this->render('admin/modif-sport.html.twig', [
+                'sport_form' => $form->createView(),
+                'sport' => $sport,
+            ]);
+        }
+    /**
+     * @Route("/admin/modif-categorie/{id}",name="modif-categorie")
+     *
+     */
+    public function modifCategorie(Request $request, Categorie $categorie){
+        $form = $this->createForm(CreateCategoryType::class, $categorie);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($categorie);
+            $entityManager->flush();
+        }
+        return $this->render('admin/modif-categorie.html.twig', [
+            'categorie_form' => $form->createView(),
+            'categorie'=> $categorie,
+        ]);
+    }
+    /**
+     * @Route("/admin/modif-type/{id}",name="modif-type")
+     *
+     */
+    public function modifType(Request $request, Type $type){
+        $form = $this->createForm(CreateTypeType::class, $type);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($type);
+            $entityManager->flush();
+        }
+        return $this->render('admin/modif-type.html.twig', [
+            'type_form' => $form->createView(),
+            'type'=> $type,
         ]);
     }
 

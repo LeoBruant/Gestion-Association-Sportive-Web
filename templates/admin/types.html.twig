@@ -22,7 +22,7 @@
 							<tr>
 								<th scope="row">{{ type.id }}</th>
 								<td>{{ type.nom }}</td>
-								<td><a href="#" class="btn btn-info float-right">Modifier</a></td>
+								<td><a href="{{ path('modif-type', {'id': type.id}) }}" class="btn btn-info float-right">Modifier</a></td>
 								<td><a href="{{ path('delete-type', {'id': type.id}) }}" class="btn btn-danger float-right">Supprimer</a></td>
 							</tr>
 						{% endfor %}
