@@ -28,6 +28,9 @@
 						{% endfor %}
 					</tbody>
 				</table>
+				{% if error is defined %}
+					{{ error }}
+				{% endif %}
 			</div>
 
 			{# type form #}

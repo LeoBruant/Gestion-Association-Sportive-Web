@@ -10,6 +10,7 @@ use App\Form\CreateCategoryType;
 use App\Form\CreateEventType;
 use App\Form\CreateSportType;
 use App\Form\CreateTypeType;
+use App\Repository\EvenementRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -41,6 +42,8 @@ class AdminController extends AbstractController
 			$entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($event);
             $entityManager->flush();
+
+			$evenements = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
         }
 
 		return $this->render('admin/events.html.twig', [
@@ -70,6 +73,8 @@ class AdminController extends AbstractController
 			$entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($type);
             $entityManager->flush();
+
+			$types = $this->getDoctrine()->getRepository(Type::class)->findAll();
         }
 
 		return $this->render('admin/types.html.twig', [
@@ -99,6 +104,8 @@ class AdminController extends AbstractController
 			$entityManager = $this->getDoctrine()->getManager();
 			$entityManager->persist($sport);
 			$entityManager->flush();
+
+			$sports = $this->getDoctrine()->getRepository(Sport::class)->findAll();
         }
 
 		return $this->render('admin/sports.html.twig', [
@@ -128,6 +135,8 @@ class AdminController extends AbstractController
 			$entityManager = $this->getDoctrine()->getManager();
 			$entityManager->persist($category);
 			$entityManager->flush();
+
+			$categories = $this->getDoctrine()->getRepository(Categorie::class)->findAll();
         }
 
 		return $this->render('admin/categories.html.twig', [
@@ -145,48 +154,78 @@ class AdminController extends AbstractController
         $manager->remove($event);
         $manager->flush();
 
-        return $this->render('admin/delete-event.html.twig', [
-            'event'=> $event,
-        ]);
+        return $this->redirectToRoute('events');
     }
+
     /**
      * @Route("/admin/delete-categorie/{id}",name="delete-categorie")
      *
      */
-    public function removeCategorie(Categorie $categorie){
-        $manager = $this->getDoctrine()->getManager();
-        $manager->remove($categorie);
-        $manager->flush();
+    public function removeCategorie(Categorie $category){
+		$events = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
 
-        return $this->render('admin/delete-categorie.html.twig', [
-            'categorie'=> $categorie,
-        ]);
+
+		foreach($events as $event){
+			if($event->getCategorie() === $category){
+				$exist = true;
+			}
+		}
+
+		if(!$exist){
+			$manager = $this->getDoctrine()->getManager();
+			$manager->remove($category);
+			$manager->flush();
+		}
+
+        return $this->redirectToRoute('categories');
     }
+
     /**
      * @Route("/admin/delete-sport/{id}",name="delete-sport")
      *
      */
     public function removeSport(Sport $sport){
-        $manager = $this->getDoctrine()->getManager();
-        $manager->remove($sport);
-        $manager->flush();
+		$events = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
 
-        return $this->render('admin/delete-sport.html.twig', [
-            'sport'=> $sport,
-        ]);
+		$exist = false;
+
+		foreach($events as $event){
+			if($event->getSport() === $sport){
+				$exist = true;
+			}
+		}
+
+		if(!$exist){
+			$manager = $this->getDoctrine()->getManager();
+			$manager->remove($sport);
+			$manager->flush();
+		}
+
+        return $this->redirectToRoute('sports');
     }
+
     /**
-     * @Route("/admin/delete-type/{id}",name="delete-type")
+     * @Route("/admin/delete-type/{id}", name="delete-type")
      *
      */
     public function removeType(Type $type){
-        $manager = $this->getDoctrine()->getManager();
-        $manager->remove($type);
-        $manager->flush();
+		$events = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
 
-        return $this->render('admin/delete-type.html.twig', [
-            'type'=> $type,
-        ]);
+        $exist = false;
+
+        foreach($events as $event){
+            if($event->getType() === $type){
+                $exist = true;
+            }
+        }
+
+        if(!$exist){
+            $manager = $this->getDoctrine()->getManager();
+            $manager->remove($type);
+            $manager->flush();
+        }
+
+		return $this->redirectToRoute('types');
     }
     /**
      * @Route("/admin/modif-event/{id}",name="modif-event")
@@ -261,5 +300,4 @@ class AdminController extends AbstractController
             'type'=> $type,
         ]);
     }
-
 }
