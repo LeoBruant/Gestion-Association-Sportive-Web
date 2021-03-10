@@ -29,7 +29,7 @@
                     <td>{{ evenement.categorie.libelle }}</td>
                     <td>{{ evenement.nombrePlaces }}</td>
                     <td><a href="#" class="btn btn-info">Modifier</a></td>
-                    <td><a href="#" class="btn btn-danger">Supprimer</a></td>
+                    <td><a href="{{ path('delete-event', {'id': evenement.id}) }}" class="btn btn-danger">Supprimer</a></td>
                 </tr>
             {% endfor %}
             </tbody>
