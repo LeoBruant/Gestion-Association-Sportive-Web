@@ -146,7 +146,10 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/admin/delete-event/{id}",name="delete-event")
+<<<<<<< HEAD
+=======
      *
+>>>>>>> e034e16d240e27119004ed0b0d08bfea356cdfe4
      */
     public function removeEvent(Evenement $event){
         $manager = $this->getDoctrine()->getManager();
