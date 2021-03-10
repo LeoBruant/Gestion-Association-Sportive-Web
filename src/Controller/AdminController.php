@@ -153,9 +153,7 @@ class AdminController extends AbstractController
         $manager->remove($event);
         $manager->flush();
 
-        return $this->render('admin/delete-event.html.twig', [
-            'event'=> $event,
-        ]);
+        return $this->redirectToRoute('events');
     }
     /**
      * @Route("/admin/delete-categorie/{id}",name="delete-categorie")
@@ -166,9 +164,7 @@ class AdminController extends AbstractController
         $manager->remove($categorie);
         $manager->flush();
 
-        return $this->render('admin/delete-categorie.html.twig', [
-            'categorie'=> $categorie,
-        ]);
+        return $this->redirectToRoute('categories');
     }
     /**
      * @Route("/admin/delete-sport/{id}",name="delete-sport")
@@ -179,12 +175,10 @@ class AdminController extends AbstractController
         $manager->remove($sport);
         $manager->flush();
 
-        return $this->render('admin/delete-sport.html.twig', [
-            'sport'=> $sport,
-        ]);
+        return $this->redirectToRoute('sports');
     }
     /**
-     * @Route("/admin/delete-type/{id}",name="delete-type")
+     * @Route("/admin/delete-type/{id}", name="delete-type")
      *
      */
     public function removeType(Type $type){
@@ -192,9 +186,7 @@ class AdminController extends AbstractController
         $manager->remove($type);
         $manager->flush();
 
-        return $this->render('admin/delete-type.html.twig', [
-            'type'=> $type,
-        ]);
+        return $this->redirectToRoute('types');
     }
 
 }
