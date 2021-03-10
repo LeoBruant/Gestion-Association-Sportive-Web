@@ -70,8 +70,13 @@ class AdminController extends AbstractController
             $entityManager->flush();
         }
 
+		// types
+
+		$types = $this->getDoctrine()->getRepository(Type::class)->findAll();
+
 		return $this->render('admin/new-type.html.twig', [
             'type_form' => $form->createView(),
+			'types' => $types,
         ]);
     }
 
@@ -98,8 +103,13 @@ class AdminController extends AbstractController
 			$entityManager->flush();
         }
 
+		// sports
+
+		$sports = $this->getDoctrine()->getRepository(Sport::class)->findAll();
+
 		return $this->render('admin/new-sport.html.twig', [
             'sport_form' => $form->createView(),
+			'sports' => $sports,
         ]);
     }
 
@@ -108,6 +118,8 @@ class AdminController extends AbstractController
      */
     public function newCategory(Request $request): Response
     {
+		// form
+
         $category = new Categorie();
 
         $form = $this->createForm(CreateCategoryType::class, $category);
@@ -126,8 +138,13 @@ class AdminController extends AbstractController
 			$entityManager->flush();
         }
 
+		// categories
+
+		$categories = $this->getDoctrine()->getRepository(Categorie::class)->findAll();
+
 		return $this->render('admin/new-category.html.twig', [
             'category_form' => $form->createView(),
+			'categories' => $categories,
         ]);
     }
 }
