@@ -16,10 +16,13 @@ class HomeController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
 		$admin = false;
-		$user = $this->getDoctrine()->getRepository(Utilisateur::class)->find($this->getUser()->getId());
 
-		if($user->getEleve() === null){
-			$admin = true;
+		if($this->getUser() !== null){
+			$user = $this->getDoctrine()->getRepository(Utilisateur::class)->find($this->getUser()->getId());
+
+			if($user->getEleve() === null){
+				$admin = true;
+			}
 		}
 
         return $this->render('home/home.html.twig', [
