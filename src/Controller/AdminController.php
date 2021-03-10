@@ -31,6 +31,7 @@ class AdminController extends AbstractController
      */
     public function newEvent(Request $request): Response
     {
+        $evenements = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
         $event = new Evenement();
 
         $form = $this->createForm(CreateEventType::class, $event);
@@ -44,6 +45,7 @@ class AdminController extends AbstractController
 
 		return $this->render('admin/new-event.html.twig', [
             'event_form' => $form->createView(),
+            'evenements'=> $evenements,
         ]);
     }
 
@@ -147,4 +149,6 @@ class AdminController extends AbstractController
 			'categories' => $categories,
         ]);
     }
+    
+
 }
