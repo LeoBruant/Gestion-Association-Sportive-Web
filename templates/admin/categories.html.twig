@@ -23,7 +23,7 @@
 								<th scope="row">{{ category.id }}</th>
 								<td>{{ category.libelle }}</td>
 								<td><a href="#" class="btn btn-info float-right">Modifier</a></td>
-								<td><a href="#" class="btn btn-danger float-right">Supprimer</a></td>
+								<td><a href="{{ path('delete-categorie', {'id': category.id}) }}" class="btn btn-danger float-right">Supprimer</a></td>
 							</tr>
 						{% endfor %}
 					</tbody>
