@@ -41,6 +41,8 @@ class AdminController extends AbstractController
 			$entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($event);
             $entityManager->flush();
+
+			$evenements = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
         }
 
 		return $this->render('admin/events.html.twig', [
@@ -70,6 +72,8 @@ class AdminController extends AbstractController
 			$entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($type);
             $entityManager->flush();
+
+			$types = $this->getDoctrine()->getRepository(Type::class)->findAll();
         }
 
 		return $this->render('admin/types.html.twig', [
@@ -99,6 +103,8 @@ class AdminController extends AbstractController
 			$entityManager = $this->getDoctrine()->getManager();
 			$entityManager->persist($sport);
 			$entityManager->flush();
+
+			$sports = $this->getDoctrine()->getRepository(Sport::class)->findAll();
         }
 
 		return $this->render('admin/sports.html.twig', [
@@ -128,6 +134,8 @@ class AdminController extends AbstractController
 			$entityManager = $this->getDoctrine()->getManager();
 			$entityManager->persist($category);
 			$entityManager->flush();
+
+			$categories = $this->getDoctrine()->getRepository(Categorie::class)->findAll();
         }
 
 		return $this->render('admin/categories.html.twig', [
@@ -138,6 +146,10 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/admin/delete-event/{id}",name="delete-event")
+<<<<<<< HEAD
+=======
+     *
+>>>>>>> e034e16d240e27119004ed0b0d08bfea356cdfe4
      */
     public function removeEvent(Evenement $event){
         $manager = $this->getDoctrine()->getManager();
