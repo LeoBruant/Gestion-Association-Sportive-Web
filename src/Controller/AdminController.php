@@ -57,12 +57,12 @@ class AdminController extends AbstractController
      */
     public function types(Request $request): Response
     {
+        $types = $this->getDoctrine()->getRepository(Type::class)->findAll();
         $type = new Type();
 
         $form = $this->createForm(CreateTypeType::class, $type);
 		$form->handleRequest($request);
 
-		$types = $this->getDoctrine()->getRepository(Type::class)->findAll();
 		$type_names = [];
 
 		foreach($types as $type){
@@ -278,7 +278,7 @@ class AdminController extends AbstractController
             $entityManager->flush();
         }
         return $this->render('admin/modif-categorie.html.twig', [
-            'categorie_form' => $form->createView(),
+            'category_form' => $form->createView(),
             'categorie'=> $categorie,
         ]);
     }
