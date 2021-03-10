@@ -2,6 +2,38 @@
 
 {% block tab %}
 	<section class="col-10 mx-auto my-5">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Sport</th>
+                <th scope="col">Type</th>
+                <th scope="col">Catégorie</th>
+                <th scope="col">Nombre de places</th>
+                <th scope="col">Image</th>
+                <th scope="col">Vignette</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for evenement in evenements %}
+                <tr>
+                    <th scope="row">{{ evenement.id }}</th>
+                    <td>{{ evenement.nom }}</td>
+                    <td>{{ evenement.sport.nom }}</td>
+                    <td>{{ evenement.type.nom}}</td>
+                    <td>{{ evenement.categorie.libelle }}</td>
+                    <td>{{ evenement.nombrePlaces }}</td>
+                    <td>{{ evenement.image }}</td>
+                    <td>{{ evenement.vignette }}</td>
+                    <td><a href="">Modifier</a></td>
+                    <td><a href="">Supprimer</a></td>
+                </tr>
+            {% endfor %}<th></th>
+            </tbody>
+        </table>
 		<h1 class="mb-5">Ajouter un évènement</h1>
 		<h3 class="mb-4">Informations générales</h3>
 		{{ form_start(event_form) }}
