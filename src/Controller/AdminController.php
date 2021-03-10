@@ -41,6 +41,8 @@ class AdminController extends AbstractController
 			$entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($event);
             $entityManager->flush();
+
+			$evenements = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
         }
 
 		return $this->render('admin/events.html.twig', [
@@ -70,6 +72,8 @@ class AdminController extends AbstractController
 			$entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($type);
             $entityManager->flush();
+
+			$types = $this->getDoctrine()->getRepository(Type::class)->findAll();
         }
 
 		return $this->render('admin/types.html.twig', [
@@ -99,6 +103,8 @@ class AdminController extends AbstractController
 			$entityManager = $this->getDoctrine()->getManager();
 			$entityManager->persist($sport);
 			$entityManager->flush();
+
+			$sports = $this->getDoctrine()->getRepository(Sport::class)->findAll();
         }
 
 		return $this->render('admin/sports.html.twig', [
@@ -128,6 +134,8 @@ class AdminController extends AbstractController
 			$entityManager = $this->getDoctrine()->getManager();
 			$entityManager->persist($category);
 			$entityManager->flush();
+
+			$categories = $this->getDoctrine()->getRepository(Categorie::class)->findAll();
         }
 
 		return $this->render('admin/categories.html.twig', [
