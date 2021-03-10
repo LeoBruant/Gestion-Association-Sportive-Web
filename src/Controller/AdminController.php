@@ -10,6 +10,7 @@ use App\Form\CreateCategoryType;
 use App\Form\CreateEventType;
 use App\Form\CreateSportType;
 use App\Form\CreateTypeType;
+use App\Repository\EvenementRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -155,38 +156,76 @@ class AdminController extends AbstractController
 
         return $this->redirectToRoute('events');
     }
+
     /**
      * @Route("/admin/delete-categorie/{id}",name="delete-categorie")
      *
      */
-    public function removeCategorie(Categorie $categorie){
-        $manager = $this->getDoctrine()->getManager();
-        $manager->remove($categorie);
-        $manager->flush();
+    public function removeCategorie(Categorie $category){
+		$events = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
+
+		$exist = false;
+
+		foreach($events as $event){
+			if($event->getCategorie() === $category){
+				$exist = true;
+			}
+		}
+
+		if(!$exist){
+			$manager = $this->getDoctrine()->getManager();
+			$manager->remove($category);
+			$manager->flush();
+		}
 
         return $this->redirectToRoute('categories');
     }
+
     /**
      * @Route("/admin/delete-sport/{id}",name="delete-sport")
      *
      */
     public function removeSport(Sport $sport){
-        $manager = $this->getDoctrine()->getManager();
-        $manager->remove($sport);
-        $manager->flush();
+		$events = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
+
+		$exist = false;
+
+		foreach($events as $event){
+			if($event->getSport() === $sport){
+				$exist = true;
+			}
+		}
+
+		if(!$exist){
+			$manager = $this->getDoctrine()->getManager();
+			$manager->remove($sport);
+			$manager->flush();
+		}
 
         return $this->redirectToRoute('sports');
     }
+
     /**
      * @Route("/admin/delete-type/{id}", name="delete-type")
      *
      */
     public function removeType(Type $type){
-        $manager = $this->getDoctrine()->getManager();
-        $manager->remove($type);
-        $manager->flush();
+		$events = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
 
-        return $this->redirectToRoute('types');
+		$exist = false;
+
+		foreach($events as $event){
+			if($event->getType() === $type){
+				$exist = true;
+			}
+		}
+
+		if(!$exist){
+			$manager = $this->getDoctrine()->getManager();
+			$manager->remove($type);
+			$manager->flush();
+		}
+
+		return $this->redirectToRoute('types');
     }
-
 }

@@ -30,7 +30,6 @@ class CreateEventType extends AbstractType
             ])
             ->add('date', DateType::class, [
                 'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd',
                 'required' => true,
             ])
             ->add('nombre_places', IntegerType::class,[
