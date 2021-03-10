@@ -132,6 +132,13 @@ class AdminController extends AbstractController
             'category_form' => $form->createView(),
         ]);
     }
-    
+    /**
+     * @Route("/admin/delete-event",name="delete-event")
+     */
+    public function removeEvent(Evenement $event){
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($event);
+        $manager->flush();
+    }
 
 }

@@ -29,7 +29,7 @@
                     <td>{{ evenement.image }}</td>
                     <td>{{ evenement.vignette }}</td>
                     <td><a href="">Modifier</a></td>
-                    <td><a href="">Supprimer</a></td>
+                    <td><a href="{{ path('delete-event', {'id': evenement.id}) }}">Supprimer</a></td>
                 </tr>
             {% endfor %}<th></th>
             </tbody>
