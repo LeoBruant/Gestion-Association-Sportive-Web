@@ -1,0 +1,63 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block tab %}
+	<div class="col-11 mx-auto">
+		<div class="row">
+
+			{# types #}
+
+			<div class="col-lg-6 mb-5">
+				<h2 class="mb-5 text-center">Liste des types d'événement</h2>
+				<table class="table">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col" class="thead-left">#</th>
+							<th scope="col">Type de projet</th>
+							<th scope="col"></th>
+							<th scope="col" class="thead-right"></th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for type in types %}
+							<tr>
+								<th scope="row">{{ type.id }}</th>
+								<td>{{ type.nom }}</td>
+								<td><a href="#" class="btn btn-info float-right">Modifier</a></td>
+								<td><a href="#" class="btn btn-danger float-right">Supprimer</a></td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+
+			{# type form #}
+
+			<div class="col-lg-6">
+				<h2 class="mb-5 text-center">Ajouter un type d'événement</h2>
+				{{ form_start(type_form) }}
+					<div class="col-md-7 mx-auto mb-4">
+						<p class="mt-3 mb-1">Nom du type d'événement<span class="text-danger">*</span></p>{{ form_widget(type_form.nom) }}
+					</div>
+					<div class="text-center">
+						{{ form_widget(type_form.valider, {'attr': {'class': 'bg-success text-light col-2'}}) }}
+					</div>
+				{{ form_end(type_form) }}
+			</div>
+		</div>
+	</div>
+	<style>
+		/* tables */
+
+		.thead-left{
+			border-top-left-radius: 0.25rem;
+		}
+
+		.thead-right{
+			border-top-right-radius: 0.25rem;
+		}
+
+		.table .thead-dark th{
+			border: none;
+		}
+	</style>
+{% endblock %}

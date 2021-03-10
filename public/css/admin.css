@@ -1,0 +1,13 @@
+/* tables */
+
+.thead-left{
+	border-top-left-radius: 0.25rem;
+}
+
+.thead-right{
+	border-top-right-radius: 0.25rem;
+}
+
+.table .thead-dark th{
+	border: none;
+}

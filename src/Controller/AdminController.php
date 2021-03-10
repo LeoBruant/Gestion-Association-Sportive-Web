@@ -27,7 +27,7 @@ class AdminController extends AbstractController
     }
 
 	/**
-     * @Route("/admin/new-event", name="new-event")
+     * @Route("/admin/events", name="events")
      */
     public function newEvent(Request $request): Response
     {
@@ -43,14 +43,14 @@ class AdminController extends AbstractController
             $entityManager->flush();
         }
 
-		return $this->render('admin/new-event.html.twig', [
+		return $this->render('admin/events.html.twig', [
             'event_form' => $form->createView(),
             'evenements'=> $evenements,
         ]);
     }
 
 	/**
-     * @Route("/admin/new-type", name="new-type")
+     * @Route("/admin/types", name="types")
      */
     public function newType(Request $request): Response
     {
@@ -72,13 +72,18 @@ class AdminController extends AbstractController
             $entityManager->flush();
         }
 
-		return $this->render('admin/new-type.html.twig', [
+		// types
+
+		$types = $this->getDoctrine()->getRepository(Type::class)->findAll();
+
+		return $this->render('admin/types.html.twig', [
             'type_form' => $form->createView(),
+			'types' => $types,
         ]);
     }
 
 	/**
-     * @Route("/admin/new-sport", name="new-sport")
+     * @Route("/admin/sports", name="sports")
      */
     public function newSport(Request $request): Response
     {
@@ -100,16 +105,23 @@ class AdminController extends AbstractController
 			$entityManager->flush();
         }
 
-		return $this->render('admin/new-sport.html.twig', [
+		// sports
+
+		$sports = $this->getDoctrine()->getRepository(Sport::class)->findAll();
+
+		return $this->render('admin/sports.html.twig', [
             'sport_form' => $form->createView(),
+			'sports' => $sports,
         ]);
     }
 
 	/**
-     * @Route("/admin/new-category", name="new-category")
+     * @Route("/admin/categories", name="categories")
      */
     public function newCategory(Request $request): Response
     {
+		// form
+
         $category = new Categorie();
 
         $form = $this->createForm(CreateCategoryType::class, $category);
@@ -128,8 +140,13 @@ class AdminController extends AbstractController
 			$entityManager->flush();
         }
 
-		return $this->render('admin/new-category.html.twig', [
+		// categories
+
+		$categories = $this->getDoctrine()->getRepository(Categorie::class)->findAll();
+
+		return $this->render('admin/categories.html.twig', [
             'category_form' => $form->createView(),
+			'categories' => $categories,
         ]);
     }
     /**
