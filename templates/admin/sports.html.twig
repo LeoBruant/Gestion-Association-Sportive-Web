@@ -3,15 +3,18 @@
 {% block tab %}
 	<div class="col-11 mx-auto">
 		<div class="row">
+
+			{# sports #}
+
 			<div class="col-lg-6 mb-5">
 				<h2 class="mb-5 text-center">Liste des sports</h2>
 				<table class="table">
 					<thead class="thead-dark">
 						<tr>
-							<th scope="col">#</th>
+							<th scope="col" class="thead-left">#</th>
 							<th scope="col">Nom du sport</th>
 							<th scope="col"></th>
-							<th scope="col"></th>
+							<th scope="col" class="thead-right"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -26,6 +29,9 @@
 					</tbody>
 				</table>
 			</div>
+
+			{# sport form #}
+
 			<div class="col-lg-6 mb-5">
 				<h2 class="mb-5 text-center">Ajouter un sport</h2>
 				{{ form_start(sport_form) }}
@@ -39,4 +45,19 @@
 			</div>
 		</div>
 	</div>
+	<style>
+		/* tables */
+
+		.thead-left{
+			border-top-left-radius: 0.25rem;
+		}
+
+		.thead-right{
+			border-top-right-radius: 0.25rem;
+		}
+
+		.table .thead-dark th{
+			border: none;
+		}
+	</style>
 {% endblock %}

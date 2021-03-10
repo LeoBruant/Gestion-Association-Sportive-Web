@@ -3,15 +3,18 @@
 {% block tab %}
 	<div class="col-11 mx-auto">
 		<div class="row">
+
+			{# types #}
+
 			<div class="col-lg-6 mb-5">
 				<h2 class="mb-5 text-center">Liste des types d'événement</h2>
 				<table class="table">
 					<thead class="thead-dark">
 						<tr>
-							<th scope="col">#</th>
+							<th scope="col" class="thead-left">#</th>
 							<th scope="col">Type de projet</th>
 							<th scope="col"></th>
-							<th scope="col"></th>
+							<th scope="col" class="thead-right"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -26,6 +29,9 @@
 					</tbody>
 				</table>
 			</div>
+
+			{# type form #}
+
 			<div class="col-lg-6">
 				<h2 class="mb-5 text-center">Ajouter un type d'événement</h2>
 				{{ form_start(type_form) }}
@@ -39,4 +45,19 @@
 			</div>
 		</div>
 	</div>
+	<style>
+		/* tables */
+
+		.thead-left{
+			border-top-left-radius: 0.25rem;
+		}
+
+		.thead-right{
+			border-top-right-radius: 0.25rem;
+		}
+
+		.table .thead-dark th{
+			border: none;
+		}
+	</style>
 {% endblock %}
