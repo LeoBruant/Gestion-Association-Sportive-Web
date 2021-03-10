@@ -137,12 +137,7 @@ class AdminController extends AbstractController
     }
 
     /**
-<<<<<<< HEAD
      * @Route("/admin/delete-event/{id}",name="delete-event")
-     *
-=======
-     * @Route("/admin/delete-event", name="delete-event")
->>>>>>> 95b2f9807e4072d6ee0594a642665b2f2893d801
      */
     public function removeEvent(Evenement $event){
         $manager = $this->getDoctrine()->getManager();
@@ -163,7 +158,7 @@ class AdminController extends AbstractController
         $manager->flush();
 
         return $this->render('admin/delete-categorie.html.twig', [
-            'event'=> $categorie,
+            'categorie'=> $categorie,
         ]);
     }
     /**
@@ -176,7 +171,7 @@ class AdminController extends AbstractController
         $manager->flush();
 
         return $this->render('admin/delete-sport.html.twig', [
-            'event'=> $sport,
+            'sport'=> $sport,
         ]);
     }
     /**
@@ -189,7 +184,7 @@ class AdminController extends AbstractController
         $manager->flush();
 
         return $this->render('admin/delete-type.html.twig', [
-            'event'=> $type,
+            'type'=> $type,
         ]);
     }
 
