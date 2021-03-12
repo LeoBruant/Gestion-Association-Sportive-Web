@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ event.nom }}
+{% endblock %}
+
+{% block body %}
+	<div class="col-11 mx-auto">
+		<h1>{{ event.nom }}</h1>
+		<p>{{ event.date|date('d-m-Y') }}</p>
+		<div class="attributes">
+			<p><b>Sport</b> : {{ event.sport.nom }}</p>
+			<p><b>Type d'événement</b> : {{ event.type.nom }}</p>
+			<p><b>Catégorie</b> : {{ event.categorie.libelle }}</p>
+		</div>
+		<br>
+		<div class="image" style="background-image: url('/images/{{event.image}}')"></div>
+		<br>
+		<p><b>Description</b></p>
+		<p class="text-break">{{ event.description }}</p>
+
+		<p><b>Inscriptions</b></p>
+		<p class="mb-5"></p>
+
+		<h2>{{ documents|length }} document{% if documents|length > 1 %}s{% endif %} à télécharger</h2>
+		<table class="mt-5"></table>
+
+		<a href="{{ path('event-list')}}" class="text-dark mr-4">< Retour aux événements</a>
+		<a href="#" class="btn btn-success">Inscription</a>
+	</div>
+	<style>
+		.attributes{
+			line-height: 0.25rem;
+		}
+
+		.image{
+			background-position: center;
+			height: 250px;
+		}
+
+		/* footer */
+
+		.container-fluid {
+			overflow: hidden;
+			background: #000000;
+			color: #989c9e;
+			margin-bottom: 0;
+			padding-bottom: 0;
+		}
+
+		footer{
+			line-height: 1.25;
+		}
+
+		.bold-text {
+			color: white;
+		}
+
+		.lien{
+			color: #989c9e;
+		}
+		.lien:hover{
+			color: #b7bcbf;
+			text-decoration: none;
+		}
+	</style>
+{% endblock %}

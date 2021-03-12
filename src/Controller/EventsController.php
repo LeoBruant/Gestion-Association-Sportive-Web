@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class EventsController extends AbstractController
 {
 	/**
-     * @Route("/events",name="event-list")
+     * @Route("/events", name="event-list")
      *
      */
     public function eventList(){
@@ -29,6 +29,28 @@ class EventsController extends AbstractController
         return $this->render('events/index.html.twig', [
 			'events' => $events,
 			'admin' => $admin,
+		]);
+    }
+
+	/**
+     * @Route("/event-detail/{id}", name="event-detail")
+     *
+     */
+    public function eventDetail(Evenement $event){
+		if($this->getUser() !== null){
+			$user = $this->getDoctrine()->getRepository(Utilisateur::class)->find($this->getUser()->getId());
+
+			if($user->getEleve() === null){
+				$admin = true;
+			}
+		}
+
+		$documents = [];
+
+        return $this->render('events/event.html.twig', [
+			'event' => $event,
+			'admin' => $admin,
+			'documents' => $documents,
 		]);
     }
 }

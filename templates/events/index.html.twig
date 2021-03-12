@@ -9,9 +9,9 @@
 		</div>
 		{% for event in events %}
 			<div class="row mt-5">
-				<div class="vignette" style="background-image: url('vignettes/{{event.vignette}}')"></div>
+				<div class="vignette" style="background-image: url('/vignettes/{{event.vignette}}')"></div>
 				<div style="width: calc(100% - 275px)">
-					<h1 class="event-title">{{ event.nom }}</h1>
+					<h1 class="event-title"><a href="{{ path('event-detail', {'id': event.id}) }}" class="text-dark">{{ event.nom }}</a></h1>
 					<small>{{ event.date|date('d-m-Y') }}</small>
 					<p class="text-break description">{{ event.description }}</p>
 				</div>
@@ -20,7 +20,6 @@
 	</div>
 	<style>
 		.vignette{
-			background-size: cover;
 			background-position: center;
 			height: 250px;
 			width: 250px;
