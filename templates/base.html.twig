@@ -21,17 +21,20 @@
 
 				<ul class="navbar-nav mr-auto float-left">
 					<span class="navbar-brand"><img src="https://www.lycee-stvincent.fr/themes/saint_vincent/images/logo.png" class="col-9"/></span>
+
 					<li class="nav-item active">
 						<a class="nav-link" href="{{ path('home') }}">ACCUEIL</a>
 					</li>
 					
-					{% if admin is defined %}
-						{% if app.user and admin %}
-							<li class="nav-item active">
-								<a class="nav-link" href="{{ path('events') }}">ADMINISTRATION</a>
-							</li>
-						{% endif %}
+					{% if app.user and admin %}
+						<li class="nav-item active">
+							<a class="nav-link" href="{{ path('events') }}">ADMINISTRATION</a>
+						</li>
 					{% endif %}
+
+					<li class="nav-item active">
+						<a class="nav-link" href="{{ path('event-list') }}">EVENEMENTS</a>
+					</li>
 				</ul>
 
 				<!-- partie gauche du header -->

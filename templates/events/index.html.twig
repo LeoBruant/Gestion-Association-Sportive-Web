@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evénements{% endblock %}
+
+{% block body %}
+	<div class="col-11 mx-auto">
+		<div class="row">
+			<h2 class="mb-4">{{ events|length }} événement{% if events|length > 1 %}s{% endif %}</h2>
+		</div>
+		{% for event in events %}
+			<div class="row mt-5">
+				<div class="vignette" style="background-image: url('vignettes/{{event.vignette}}')"></div>
+				<div style="width: calc(100% - 275px)">
+					<h2>{{ event.nom }}</h2>
+					<p class="text-break">{{ event.description }}</p>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+	<style>
+		.vignette{
+			background-size: cover;
+			background-position: center;
+			height: 250px;
+			width: 250px;
+			margin-right: 25px;
+		}
+	</style>
+{% endblock %}

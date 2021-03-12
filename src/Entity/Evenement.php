@@ -6,6 +6,7 @@ use App\Repository\EvenementRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EvenementRepository::class)
@@ -26,6 +27,11 @@ class Evenement
 
     /**
      * @ORM\Column(type="string", length=255)
+	 * @Assert\Length(
+     *      min = 1,
+     *      max = 255,
+     *      maxMessage = "La description doit faire {{ limit }} caractères au maximum"
+     * )
      */
     private $description;
 
@@ -36,16 +42,19 @@ class Evenement
 
     /**
      * @ORM\Column(type="integer")
+	 * @Assert\PositiveOrZero
      */
     private $nombrePlaces;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
      */
     private $image;
 
     /**
      * @ORM\Column(type="string", length=255)
+	 * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
      */
     private $vignette;
 

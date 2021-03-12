@@ -39,6 +39,14 @@ class AdminController extends AbstractController
 		$form->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
+			$file = $form['vignette']->getData();
+        	$file->move('vignettes', $file->getClientOriginalName());
+			$event->setVignette($file->getClientOriginalName());
+
+			$file = $form['image']->getData();
+        	$file->move('images', $file->getClientOriginalName());
+			$event->setImage($file->getClientOriginalName());
+
 			$entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($event);
             $entityManager->flush();
@@ -49,6 +57,7 @@ class AdminController extends AbstractController
 		return $this->render('admin/events.html.twig', [
             'event_form' => $form->createView(),
             'evenements'=> $evenements,
+			'admin' => true
         ]);
     }
 
@@ -80,6 +89,7 @@ class AdminController extends AbstractController
 		return $this->render('admin/types.html.twig', [
             'type_form' => $form->createView(),
 			'types' => $types,
+			'admin' => true
         ]);
     }
 
@@ -111,6 +121,7 @@ class AdminController extends AbstractController
 		return $this->render('admin/sports.html.twig', [
             'sport_form' => $form->createView(),
 			'sports' => $sports,
+			'admin' => true
         ]);
     }
 
@@ -142,11 +153,12 @@ class AdminController extends AbstractController
 		return $this->render('admin/categories.html.twig', [
             'category_form' => $form->createView(),
 			'categories' => $categories,
+			'admin' => true
         ]);
     }
 
     /**
-     * @Route("/admin/delete-event/{id}",name="delete-event")
+     * @Route("/admin/delete-event/{id}", name="delete-event")
      *
      */
     public function removeEvent(Evenement $event){
@@ -158,7 +170,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/delete-categorie/{id}",name="delete-categorie")
+     * @Route("/admin/delete-categorie/{id}", name="delete-categorie")
      *
      */
     public function removeCategorie(Categorie $category){
@@ -181,7 +193,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/delete-sport/{id}",name="delete-sport")
+     * @Route("/admin/delete-sport/{id}", name="delete-sport")
      *
      */
     public function removeSport(Sport $sport){
@@ -227,8 +239,9 @@ class AdminController extends AbstractController
 
 		return $this->redirectToRoute('types');
     }
+
     /**
-     * @Route("/admin/modif-event/{id}",name="modif-event")
+     * @Route("/admin/modif-event/{id}", name="modif-event")
      *
      */
     public function modifEvent(Request $request, Evenement $event){
@@ -236,6 +249,14 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+			$file = $form['vignette']->getData();
+        	$file->move('vignettes', $file->getClientOriginalName());
+			$event->setVignette($file->getClientOriginalName());
+
+			$file = $form['image']->getData();
+        	$file->move('images', $file->getClientOriginalName());
+			$event->setImage($file->getClientOriginalName());
+			
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($event);
             $entityManager->flush();
@@ -243,10 +264,12 @@ class AdminController extends AbstractController
         return $this->render('admin/modif-event.html.twig', [
             'event_form' => $form->createView(),
             'event'=> $event,
+			'admin' => true
         ]);
     }
+
     /**
-         * @Route("/admin/modif-sport/{id}",name="modif-sport")
+         * @Route("/admin/modif-sport/{id}", name="modif-sport")
          *
          */
         public function modifSport(Request $request, Sport $sport)
@@ -262,10 +285,12 @@ class AdminController extends AbstractController
             return $this->render('admin/modif-sport.html.twig', [
                 'sport_form' => $form->createView(),
                 'sport' => $sport,
+				'admin' => true
             ]);
         }
+
     /**
-     * @Route("/admin/modif-categorie/{id}",name="modif-categorie")
+     * @Route("/admin/modif-categorie/{id}", name="modif-categorie")
      *
      */
     public function modifCategorie(Request $request, Categorie $categorie){
@@ -280,8 +305,10 @@ class AdminController extends AbstractController
         return $this->render('admin/modif-categorie.html.twig', [
             'category_form' => $form->createView(),
             'categorie'=> $categorie,
+			'admin' => true
         ]);
     }
+
     /**
      * @Route("/admin/modif-type/{id}",name="modif-type")
      *
@@ -298,6 +325,19 @@ class AdminController extends AbstractController
         return $this->render('admin/modif-type.html.twig', [
             'type_form' => $form->createView(),
             'type'=> $type,
+			'admin' => true
         ]);
+    }
+
+	/**
+     * @Route("/events", name="event-list")
+     *
+     */
+    public function eventList(){
+		$events = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
+
+        return $this->render('events/index.html.twig', [
+			'events' => $events
+		]);
     }
 }
