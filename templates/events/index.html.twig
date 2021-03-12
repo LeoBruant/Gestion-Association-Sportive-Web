@@ -5,14 +5,15 @@
 {% block body %}
 	<div class="col-11 mx-auto">
 		<div class="row">
-			<h2 class="mb-4">{{ events|length }} événement{% if events|length > 1 %}s{% endif %}</h2>
+			<h1 class="mb-4">{{ events|length }} événement{% if events|length > 1 %}s{% endif %}</h1>
 		</div>
 		{% for event in events %}
 			<div class="row mt-5">
 				<div class="vignette" style="background-image: url('vignettes/{{event.vignette}}')"></div>
 				<div style="width: calc(100% - 275px)">
-					<h2>{{ event.nom }}</h2>
-					<p class="text-break">{{ event.description }}</p>
+					<h1 class="event-title">{{ event.nom }}</h1>
+					<small>{{ event.date|date('d-m-Y') }}</small>
+					<p class="text-break description">{{ event.description }}</p>
 				</div>
 			</div>
 		{% endfor %}
@@ -24,6 +25,16 @@
 			height: 250px;
 			width: 250px;
 			margin-right: 25px;
+		}
+
+		.event-title{
+			line-height: 1.5rem;
+		}
+
+		.description{
+			margin-top: 1rem;
+			line-height: 2.25rem;
+			font-size: 1.2rem;
 		}
 	</style>
 {% endblock %}
