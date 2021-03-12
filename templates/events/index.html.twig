@@ -5,7 +5,21 @@
 {% block body %}
 	<div class="col-11 mx-auto">
 		<div class="row">
-			<h1 class="mb-4">{{ events|length }} événement{% if events|length > 1 %}s{% endif %}</h1>
+			<h1 class="mb-4 mr-4">{{ events|length }} événement{% if events|length > 1 %}s{% endif %}</h1>
+			<div class="row float-left col-6">
+				<label for="categories" class="col-2 mt-3">Catégorie:</label>
+				<select name="categories" class="form-control col-4 mt-2">
+					{% for categorie in categories %}
+						<option value="{{ categorie.libelle }}">{{ categorie.libelle }}</option>
+					{% endfor %}
+				</select>
+				<label for="sports" class="col-1 mt-3">Sport:</label>
+				<select name="sports" class="form-control col-4 mt-2">
+					{% for sport in sports %}
+						<option value="{{ sport.nom }}">{{ sport.nom }}</option>
+					{% endfor %}
+				</select>
+			</div>
 		</div>
 		{% for event in events %}
 			<div class="row mt-5">

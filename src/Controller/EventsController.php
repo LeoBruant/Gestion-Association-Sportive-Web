@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Entity\Evenement;
+use App\Entity\Sport;
 use App\Entity\Utilisateur;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,6 +17,8 @@ class EventsController extends AbstractController
      */
     public function eventList(){
 		$events = $this->getDoctrine()->getRepository(Evenement::class)->findAll();
+		$categories = $this->getDoctrine()->getRepository(Categorie::class)->findAll();
+		$sports = $this->getDoctrine()->getRepository(Sport::class)->findAll();
 
 		$admin = false;
 
@@ -29,6 +33,8 @@ class EventsController extends AbstractController
         return $this->render('events/index.html.twig', [
 			'events' => $events,
 			'admin' => $admin,
+			'categories' => $categories,
+			'sports' => $sports,
 		]);
     }
 
